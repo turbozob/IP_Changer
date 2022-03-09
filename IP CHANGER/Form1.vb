@@ -5,119 +5,13 @@ Imports System.Windows.Forms
 Imports System.Net.NetworkInformation
 
 Public Class Form1
-    Public Shared MACAddress As String = My.Settings.Setting_String_1 'Create Public String, can be used anywhere
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'When application is started put default values in textbox and select saved MAC address
         TextBox1.Text = "192.168.1.123"
         TextBox2.Text = "255.255.255.0"
         TextBox3.Text = "192.168.1.1"
-        ComboBox2.Items.Add(MACAddress)
-        Me.ComboBox2.SelectedIndex = 0
-    End Sub
-
-
-    Private Sub BtnCHGIP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCHGIP.Click
-        'SET STATIC IP BUTTON
-        Dim IPAddress As String = TextBox1.Text
-        Dim SubnetMask As String = TextBox2.Text
-        Dim Gateway As String = TextBox3.Text
-
-        Dim objMC As ManagementClass = New ManagementClass("Win32_NetworkAdapterConfiguration")
-        Dim objMOC As ManagementObjectCollection = objMC.GetInstances()
-
-
-        If MACAddress <> "" Then 'If desired MAC Address is not equal to nothing then do something else exit
-
-            If CheckBoxDHCP.Checked Then
-
-                For Each objMO As ManagementObject In objMOC
-                    If objMO("MACAddress") = MACAddress Then
-
-
-                        Try
-
-                            Dim objNewIP As ManagementBaseObject = Nothing
-                            Dim objSetIP As ManagementBaseObject = Nothing
-                            Dim objNewGate As ManagementBaseObject = Nothing
-                            Dim objRlsDHCPLes As ManagementBaseObject = Nothing
-                            Dim objNewDHCPLes As ManagementBaseObject = Nothing
-
-
-                            objSetIP = objMO.InvokeMethod("EnableDHCP", objNewIP, Nothing)
-
-                            'objRlsDHCPLes = objMO.InvokeMethod("ReleaseDHCPLease", objRlsDHCPLes, Nothing)
-                            'objNewDHCPLes = objMO.InvokeMethod("RenewDHCPLease", objNewDHCPLes, Nothing)
-                            'MessageBox.Show("DHCP IS SET!")
-                            MessageBox.Show("The IP address is set as DHCP", "Notification",
-        MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-
-
-                        Catch ex As Exception
-                            'MessageBox.Show("Unable to Set IP : " & ex.Message)
-                            MessageBox.Show("Unable to Set DHCP", "Error",
-        MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                        End Try
-                    Else
-                        Continue For
-                    End If
-                Next objMO
-
-
-            Else
-
-                For Each objMO As ManagementObject In objMOC
-                    If objMO("MACAddress") = MACAddress Then
-
-
-                        Try
-
-                            Dim objNewIP As ManagementBaseObject = Nothing
-                            Dim objSetIP As ManagementBaseObject = Nothing
-                            Dim objNewGate As ManagementBaseObject = Nothing
-
-
-                            objNewIP = objMO.GetMethodParameters("EnableStatic")
-                            objNewGate = objMO.GetMethodParameters("SetGateways")
-
-                            'Set DefaultGateway
-                            objNewGate("DefaultIPGateway") = New String() {Gateway}
-                            objNewGate("GatewayCostMetric") = New Integer() {1}
-
-                            'Set IPAddress and Subnet Mask
-                            objNewIP("IPAddress") = New String() {IPAddress}
-                            objNewIP("SubnetMask") = New String() {SubnetMask}
-
-                            objSetIP = objMO.InvokeMethod("EnableStatic", objNewIP, Nothing)
-                            objSetIP = objMO.InvokeMethod("SetGateways", objNewGate, Nothing)
-
-                            MessageBox.Show("The IP address has been changed", "Notification",
-        MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-                            'MessageBox.Show("Done!")
-
-                        Catch ex As Exception
-                            MessageBox.Show("Unable to Set IP : " & ex.Message)
-                        End Try
-                        Continue For
-                    End If
-                Next objMO
-            End If
-        End If
-
-
-
-
-    End Sub
-
-
-
-    Private Sub BtnSAVEMAC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSAVEMAC.Click
-        ' Save settings for MAC Address
-        My.Settings.Setting_String_1 = ComboBox2.Text
-        My.Settings.Save()
-        MACAddress = My.Settings.Setting_String_1
-        MessageBox.Show("MACAddress is saved and will be used as default.." & vbCrLf & MACAddress, "SAVE",
-    MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        BtnNetScan.PerformClick()
     End Sub
 
 
@@ -183,72 +77,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub CheckBoxDHCP_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBoxDHCP.CheckedChanged
-        If CheckBoxDHCP.Checked = True Then ' Disable/Enable functions if DHCP is checked
-            TextBox1.Enabled = False
-            TextBox2.Enabled = False
-            TextBox3.Enabled = False
-            ComboBox1.Enabled = False
-        End If
-        If CheckBoxDHCP.Checked = False Then
-            TextBox1.Enabled = True
-            TextBox2.Enabled = True
-            TextBox3.Enabled = True
-            ComboBox1.Enabled = True
-        End If
-    End Sub
-
-
-    Private Sub BtnSCANMAC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSCANMAC.Click
-        ' SCAN MAC NETWORKS ADDRESS AND ADD THEM TO DROPDOWN LIST
-
-        ComboBox2.Items.Clear()
-        ComboBox2.Text = ""
-
-        Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapterConfiguration")
-            For Each queryObj As ManagementObject In searcher.Get() 'FOR EACH NETWORK DEVICE DO BELOW
-                If queryObj("MACAddress") <> "" Then        ' If MACAddress is not equal to nothing then add it to the drop list
-                    ComboBox2.Items.Add(queryObj("MACAddress"))
-                End If
-            Next
-            ComboBox2.Sorted = True
-        Catch err As ManagementException 'Catch error doing above code
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
-        End Try
-
-    End Sub
-
-    Private Sub ComboBox2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox2.SelectedIndexChanged
-        'If selected from dropdown list clear MACAddress and copy value from Combobox to MACAddress String
-
-        MACAddress = ""
-        MACAddress = ComboBox2.Text
-    End Sub
-
-    Private Sub BtnMYIP_Click_2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMYIP.Click
-        'RETRIEVE IP ADDRESS BUTTON
-        Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True") 'Check only networks which are connected IPEnabled = True
-
-            For Each queryObj As ManagementObject In searcher.Get()
-
-                If queryObj("MACAddress") = MACAddress Then 'Check only netowork which has same MACaddress which was selected from dropdown list
-                    Dim arrIPAddress As String()
-                    arrIPAddress = queryObj("IPAddress")
-                    For Each arrValue As String In arrIPAddress
-                        MessageBox.Show("IP Address: " & arrValue)
-                    Next
-                End If
-            Next
-        Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
-        End Try
-    End Sub
 
     'TEXTBOX SETUP: ENTER NUMBERS ONLY
     Private Sub TextBox1_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
@@ -270,11 +98,239 @@ Public Class Form1
     End Sub
 
     
-    
+    ' About Window  
     Private Sub BtnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnABOUT.Click
         'About
         AboutBox1.Show()
     End Sub
 
 
+    
+
+    Private Sub BtnNetScan_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetScan.Click
+        ComboBox3.Items.Clear()
+
+        Dim Result As String
+        Try
+            Dim searcher As New ManagementObjectSearcher( _
+                "root\CIMV2", _
+                "SELECT * FROM Win32_NetworkAdapter")
+
+            For Each queryObj As ManagementObject In searcher.Get()
+
+                'Result = (queryObj("Caption")) ' Result is the name of network card
+                'Dim CB_Split1() As String = Result.Split("]") ' Split string Result based on char "]"
+                'ComboBox3.Items.Add(CB_Split1(1)) ' Add splitted string to combobox
+                ComboBox3.Items.Add(queryObj("Caption"))
+
+            Next
+        Catch err As ManagementException
+            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+        End Try
+
+    End Sub
+
+    Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
+        LblIndex.Text = ComboBox3.SelectedIndex ' Show selected index
+    End Sub
+
+    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs)
+        ComboBox3.Items.Clear()
+
+        Try
+            Dim searcher As New ManagementObjectSearcher( _
+                 "root\CIMV2", _
+                    "SELECT * FROM Win32_NetworkAdapter WHERE Manufacturer <> 'Microsoft'")
+
+
+            For Each queryObj As ManagementObject In searcher.Get()
+
+
+                Dim DeviceID As String
+                DeviceID = queryObj("DeviceID")
+                Dim ProductName As String
+                ProductName = queryObj("ProductName")
+                ComboBox3.Items.Add(DeviceID & ProductName)
+
+            Next
+        Catch err As ManagementException
+            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+        End Try
+
+
+    End Sub ' Not used: Scan only MicroSoft Network Devices (Ethernet only, not Bluetooth etc...)
+
+    ' CHANGE IP, SUBNET AND GATEWAY
+    Private Sub BtnChangeIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnChangeIP.Click
+        Dim IPAddress As String = TextBox1.Text
+        Dim SubnetMask As String = TextBox2.Text
+        Dim Gateway As String = TextBox3.Text
+
+        Try
+
+            Dim classInstance As New ManagementObject( _
+                "root\CIMV2", _
+               "Win32_NetworkAdapterConfiguration.Index='" & ComboBox3.SelectedIndex & "'", _
+                Nothing)
+
+            ' Obtain [in] parameters for the method
+            Dim inParamsIP As ManagementBaseObject = _
+                classInstance.GetMethodParameters("EnableStatic")
+
+            Dim inParamsGate As ManagementBaseObject = _
+                 classInstance.GetMethodParameters("SetGateways")
+
+
+            ' Add the IP and Subnet input parameters.
+            inParamsIP("IPAddress") = New String() {IPAddress}
+            inParamsIP("SubnetMask") = New String() {SubnetMask}
+
+            ' Add Gateway input parameters.
+            inParamsGate("DefaultIPGateway") = New String() {Gateway}
+            inParamsGate("GatewayCostMetric") = New Integer() {1}
+
+            ' Set IP and Subnet
+            Dim outParamsIP As ManagementBaseObject = _
+                classInstance.InvokeMethod("EnableStatic", inParamsIP, Nothing)
+
+            ' Set Gateway
+            Dim outParamsGate As ManagementBaseObject = _
+                classInstance.InvokeMethod("SetGateways", inParamsGate, Nothing)
+
+
+            ' List outParams
+            MessageBox.Show("The IP address has been changed", "Notification",
+     MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+        Catch err As ManagementException
+
+            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+        End Try
+    End Sub
+
+    ' GET IP ADDRESS
+    Private Sub BtnGetIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnGetIP.Click
+        Try
+            Dim searcher As New ManagementObjectSearcher( _
+                "root\CIMV2", _
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & ComboBox3.SelectedIndex) ' declare which NETWORK INDEX = from combobox index
+
+
+            For Each queryObj As ManagementObject In searcher.Get()
+
+                If queryObj("IPAddress") Is Nothing Then                    
+                    'MessageBox.Show("IP Address: " & queryObj("IPAddress"))
+                    MessageBox.Show("IP Address not available. Please establish connection.")
+                Else
+                    Dim arrIPAddress As String()
+                    arrIPAddress = queryObj("IPAddress")
+                    For Each arrValue As String In arrIPAddress
+                        MessageBox.Show("IP Address: " & arrValue)
+                        'Console.WriteLine("IPAddress: {0}", arrValue)
+                    Next
+                End If
+            Next
+        Catch err As ManagementException
+            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+        End Try
+    End Sub
+
+    Private Sub BtnDHCP_Click(sender As System.Object, e As System.EventArgs) Handles BtnDHCP.Click
+
+        Try
+
+            Dim classInstance As New ManagementObject( _
+                "root\CIMV2", _
+                "Win32_NetworkAdapterConfiguration.Index='" & ComboBox3.SelectedIndex & "'", _
+                Nothing)
+
+            ' no method [in] parameters to define
+
+
+            ' Execute the method and obtain the return values.
+            Dim outParams As ManagementBaseObject = _
+                classInstance.InvokeMethod("EnableDHCP", Nothing, Nothing)
+
+            ' List outParams
+            MessageBox.Show("DHCP Enabled", "Notification",
+      MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+        Catch err As ManagementException
+
+            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+        End Try
+    End Sub
+
+    Private Sub BtnNetDisable_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetDisable.Click
+        Try
+
+            Dim classInstance As New ManagementObject( _
+                "root\CIMV2", _
+                "Win32_NetworkAdapter.DeviceID='" & ComboBox3.SelectedIndex & "'", _
+                Nothing)
+
+            ' no method [in] parameters to define
+
+
+            ' Execute the method and obtain the return values.
+            Dim outParams As ManagementBaseObject = _
+                classInstance.InvokeMethod("Disable", Nothing, Nothing)
+
+            ' List outParams
+            MessageBox.Show("Network Disabled", "Notification",
+                   MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+        Catch err As ManagementException
+
+            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+        End Try
+
+    End Sub
+
+    Private Sub BtnNetEnable_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetEnable.Click
+        Try
+
+            Dim classInstance As New ManagementObject( _
+                "root\CIMV2", _
+                "Win32_NetworkAdapter.DeviceID='" & ComboBox3.SelectedIndex & "'", _
+                Nothing)
+
+            ' no method [in] parameters to define
+
+
+            ' Execute the method and obtain the return values.
+            Dim outParams As ManagementBaseObject = _
+                classInstance.InvokeMethod("Enable", Nothing, Nothing)
+
+            ' List outParams
+            MessageBox.Show("Network Enabled", "Notification",
+                   MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+        Catch err As ManagementException
+
+            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+        End Try
+    End Sub
+
+ 
+
+    Private Sub BtnGetMAC_Click(sender As System.Object, e As System.EventArgs) Handles BtnGetMAC.Click
+        Try
+            Dim searcher As New ManagementObjectSearcher( _
+                "root\CIMV2", _
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & ComboBox3.SelectedIndex) ' declare which NETWORK INDEX = from combobox index
+
+
+            For Each queryObj As ManagementObject In searcher.Get()
+                Dim Result As String
+                Result = (queryObj("MACAddress")) ' Result is MAC address of selected Index
+                MessageBox.Show("MAC Address: " & Result)
+
+            Next
+        Catch err As ManagementException
+            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+        End Try
+    End Sub
+
+   
 End Class

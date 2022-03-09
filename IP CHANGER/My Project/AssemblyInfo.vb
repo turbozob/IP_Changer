@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("IP CHANGER")> 
 <Assembly: AssemblyDescription("This program is distributed in the hope that it will be useful,but WITHOUT ANY WARRANTY; without even the implied warranty ofMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE")> 
-<Assembly: AssemblyCompany("GDTO")> 
+<Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("IP CHANGER")> 
 <Assembly: AssemblyCopyright("Copyright © Igor Dolfar 2015")> 
 <Assembly: AssemblyTrademark("")> 
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.6.0.0")> 
-<Assembly: AssemblyFileVersion("1.6.0.0")> 
+<Assembly: AssemblyVersion("2.0.0.0")> 
+<Assembly: AssemblyFileVersion("2.0.0.0")> 
 
 <Assembly: NeutralResourcesLanguageAttribute("en")> 

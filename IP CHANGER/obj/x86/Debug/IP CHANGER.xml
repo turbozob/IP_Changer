@@ -15,11 +15,11 @@ IPCHANGER
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.about_us">
+</member><member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner">
+</member><member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner2">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -31,11 +31,19 @@ IPCHANGER
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:WindowsApplication1.My.Resources.Resources.disable_16x16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:WindowsApplication1.My.Resources.Resources.enable_16x16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:WindowsApplication1.My.Resources.Resources.get_info_16X16">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.network_cables">
+</member><member name="P:WindowsApplication1.My.Resources.Resources.Network_16x16">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
