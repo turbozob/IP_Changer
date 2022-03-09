@@ -2,74 +2,89 @@
 <doc>
 <assembly>
 <name>
-IPCHANGER
+IP CHANGER
 </name>
 </assembly>
 <members>
+<member name="T:WindowsApplication1.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
 <member name="P:WindowsApplication1.My.Resources.Resources.ResourceManager">
-	<summary>
+<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Culture">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Culture">
+<summary>
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner2">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.aboutUsBanner2">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Arrow_In">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Arrow_In">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Arrow_Out">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Arrow_Out">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.disable_16x16">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.disable_16x16">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Edit_File">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Edit_File">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.enable_16x16">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.enable_16x16">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.get_info_16X16">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.get_info_16X16">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.logoPNG">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.logoPNG">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Network_16x16">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Network_16x16">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Open_File">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Open_File">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Save">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Save">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.setting">
-	<summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.setting">
+<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="T:WindowsApplication1.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
 </member>
 </members>

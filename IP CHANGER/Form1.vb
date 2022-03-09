@@ -26,31 +26,31 @@ Public Class Form1
         BtnNetScan.PerformClick() ' FIRST PERFORM NETWORK SCAN
 
         ' Disable auto save last used network card
-        CheckBox2.Enabled = False
+        Form2.CheckBox2.Enabled = False
 
         ' Is auto save last used network card selected?
-        If CheckBox2.Checked Then
+        If My.Settings.AutoLoadNic Then
             FunctionAutoLoadLastNicUsed(1)
         End If
 
         ' Disable autoloadfile checkbox at startup
-        CheckBox1.Enabled = False
+        Form2.CheckBox1.Enabled = False
 
         ' Is autoloadfile selected?
-        If CheckBox1.Checked Then
-
+        If My.Settings.AutoLoadConfigFile Then
+            TSSL1.Text = "Loading config file..."
             If My.Computer.FileSystem.FileExists(My.Settings.ConfigFilePath) Then
                 FunctionAutoLoadConfigFile(1)
                 FilePath = My.Settings.ConfigFilePath
                 ' Enable autoloadfile checkbox once config file exists
-                CheckBox1.Enabled = True
+                Form2.CheckBox1.Enabled = True
             Else
                 MessageBox.Show("Config File Not Found. Auto Load File is Disabled.", "Open Config File At Startup",
                   MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
 
                 ' Disable autoloadfile checkbox if config file is not found
-                CheckBox1.Checked = False
-                CheckBox1.Enabled = False
+                Form2.CheckBox1.Checked = False
+                Form2.CheckBox1.Enabled = False
             End If
 
         Else
@@ -58,7 +58,7 @@ Public Class Form1
             TextBox2.Text = "255.255.255.0"
             TextBox3.Text = "192.168.1.1"
         End If
-        
+        TSSL1.Text = "Ready"
 
     End Sub
     Sub DisableButtons()
@@ -69,7 +69,7 @@ Public Class Form1
         BtnGetMAC.Enabled = False
         BtnNetDisable.Enabled = False
         BtnNetEnable.Enabled = False
-        CheckBox2.Enabled = False
+        Form2.CheckBox2.Enabled = False
     End Sub
     Sub EnableButtons()
         BtnChangeIP.Enabled = True
@@ -93,7 +93,7 @@ Public Class Form1
 
     End Function
     Public Function GetNumberOfLines(ByVal file_path As String) As Integer
- 
+
         Dim sr As New StreamReader(file_path)
         Dim NumberOfLines As Integer
         Do While sr.Peek >= 0
@@ -133,24 +133,27 @@ Public Class Form1
         e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Or Char.IsControl(e.KeyChar))
     End Sub
 
-    
+
     ' About Window  
     Private Sub BtnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnABOUT.Click
         'About
+        AboutBox1.StartPosition = FormStartPosition.Manual
+        AboutBox1.Location = Me.Location
         AboutBox1.Show()
     End Sub
 
 
-    
+
 
     Private Sub BtnNetScan_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetScan.Click
+        TSSL1.Text = "Scanning for network adapters..."
         ComboBox3.Items.Clear()
         DisableButtons()
 
         Dim Result As String
         Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
+            Dim searcher As New ManagementObjectSearcher(
+                "root\CIMV2",
                 "SELECT * FROM Win32_NetworkAdapter WHERE Manufacturer <> 'Microsoft'")
 
             For Each queryObj As ManagementObject In searcher.Get()
@@ -165,13 +168,14 @@ Public Class Form1
         Catch err As ManagementException
             MessageBox.Show("An error occurred while querying for NetworkCardCaption data: " & err.Message)
         End Try
-
+        TSSL1.Text = "Ready"
     End Sub
 
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
+        TSSL1.Text = "Selecting network adapter..."
         Call EnableButtons()
-        CheckBox2.Enabled = True
+        Form2.CheckBox2.Enabled = True
         NetCard = ComboBox3.Text
 
         Dim NetCard_Split1() As String = NetCard.Split("]") ' Split string Result based on char "]"
@@ -179,8 +183,8 @@ Public Class Form1
         LBLNetCard.Text = NetCard_Split1(1)
 
         Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
+            Dim searcher As New ManagementObjectSearcher(
+                "root\CIMV2",
                 "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Caption ='" & NetCard & "'") ' declare which NETWORK INDEX = from combobox index
 
 
@@ -194,13 +198,14 @@ Public Class Form1
         End Try
 
         LBLDeviceID.Text = DeviceID
-
+        TSSL1.Text = "Ready"
     End Sub
 
     Sub NetEnabled()
+        TSSL1.Text = "Checking for network adapter enabled..."
         Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
+            Dim searcher As New ManagementObjectSearcher(
+                "root\CIMV2",
                 "SELECT * FROM Win32_NetworkAdapter WHERE Index = " & DeviceID) ' declare which NETWORK INDEX = from combobox index
 
             For Each queryObj As ManagementObject In searcher.Get()
@@ -220,21 +225,27 @@ Public Class Form1
             MessageBox.Show("An error occurred while querying for NetEnabled data: " & err.Message)
             NetworkConnected = False
         End Try
+        TSSL1.Text = "Ready"
     End Sub
     ' CHANGE IP, SUBNET AND GATEWAY
     Private Sub BtnChangeIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnChangeIP.Click
+        TSSL1.Text = "Changing IP address ..."
         Dim IPAddress As String = TextBox1.Text
         Dim SubnetMask As String = TextBox2.Text
         Dim Gateway As String = TextBox3.Text
 
         ' Is network enabled and connected?
-        Call NetEnabled()
-        If NetworkConnected = True Then
-        Else
-            MessageBox.Show("Please connect cable or enable network card.", "Warning",
-                       MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
-            Exit Sub
-        End If
+        If My.Settings.CheckForEnabledNIC Then
+
+            Call NetEnabled()
+            If NetworkConnected = True Then
+            Else
+                MessageBox.Show("Please connect cable or enable network card.", "Warning",
+                           MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+                Exit Sub
+            End If
+        End If '// end CheckForEnabledNIC
+
 
         ' Are IP address field empty?
         If IPAddress = "" Or SubnetMask = "" Or Gateway = "" Then
@@ -243,40 +254,49 @@ Public Class Form1
             Exit Sub
         End If
 
+
         ' CHECK IF IP ADDRESS IS USED
-        Try
+        If My.Settings.CheckForUsedIP Then
 
-            If My.Computer.Network.Ping(IPAddress, 100) Then
+            Try
 
-                MessageBox.Show("The IP address " & IPAddress & " is already used." & vbNewLine & "Select different IP address and try again", "Warning",
-                      MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+                If My.Computer.Network.Ping(IPAddress, 100) Then
+
+                    MessageBox.Show("The IP address " & IPAddress & " is already used." & vbNewLine & "Select different IP address and try again", "Warning",
+                          MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+
+                    ' IF IP IS USED THEN ABORT & EXIT SUB 
+                    Exit Sub
+                End If
+
+            Catch ex As Exception
+                ' MessageBox.Show("Error pinging IP address " & IPAddress & vbNewLine & ex.Message)
+                Dim result As DialogResult = MessageBox.Show("Cannot ping IP address " & IPAddress & vbNewLine & ex.Message & vbNewLine & vbNewLine & "Continue changing IP address?", "Ping", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.No Then
+                    Exit Sub
+                ElseIf result = DialogResult.Yes Then
+                    ' Continue changing IP
+                End If
 
                 ' IF IP IS USED THEN ABORT & EXIT SUB 
                 Exit Sub
-            End If
 
-        Catch ex As Exception
-            MessageBox.Show("Error pinging IP address " & IPAddress & vbNewLine & ex.Message)
-
-            ' IF IP IS USED THEN ABORT & EXIT SUB 
-            Exit Sub
-
-        End Try
-
+            End Try
+        End If '// end if CheckForUsedIP
 
         ' IF IP IS NOT USED THEN CONTINUE 
         Try
 
-            Dim classInstance As New ManagementObject( _
-                "root\CIMV2", _
-               "Win32_NetworkAdapterConfiguration.Index='" & DeviceID & "'", _
+            Dim classInstance As New ManagementObject(
+                "root\CIMV2",
+               "Win32_NetworkAdapterConfiguration.Index='" & DeviceID & "'",
                 Nothing)
 
             ' Obtain [in] parameters for the method
-            Dim inParamsIP As ManagementBaseObject = _
+            Dim inParamsIP As ManagementBaseObject =
                 classInstance.GetMethodParameters("EnableStatic")
 
-            Dim inParamsGate As ManagementBaseObject = _
+            Dim inParamsGate As ManagementBaseObject =
                  classInstance.GetMethodParameters("SetGateways")
 
 
@@ -289,11 +309,11 @@ Public Class Form1
             inParamsGate("GatewayCostMetric") = New Integer() {1}
 
             ' Set IP and Subnet
-            Dim outParamsIP As ManagementBaseObject = _
+            Dim outParamsIP As ManagementBaseObject =
                 classInstance.InvokeMethod("EnableStatic", inParamsIP, Nothing)
 
             ' Set Gateway
-            Dim outParamsGate As ManagementBaseObject = _
+            Dim outParamsGate As ManagementBaseObject =
                 classInstance.InvokeMethod("SetGateways", inParamsGate, Nothing)
 
 
@@ -306,21 +326,22 @@ Public Class Form1
             MessageBox.Show("An error occurred while trying to execute the IPChange method: " & err.Message)
         End Try
 
-
+        TSSL1.Text = "Ready"
 
     End Sub
 
     ' GET IP ADDRESS
     Private Sub BtnGetIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnGetIP.Click
+        TSSL1.Text = "Getting IP address..."
         Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
+            Dim searcher As New ManagementObjectSearcher(
+                "root\CIMV2",
                 "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & DeviceID) ' declare which NETWORK INDEX = from combobox index
 
 
             For Each queryObj As ManagementObject In searcher.Get()
 
-                If queryObj("IPAddress") Is Nothing Then                    
+                If queryObj("IPAddress") Is Nothing Then
                     'MessageBox.Show("IP Address: " & queryObj("IPAddress"))
                     MessageBox.Show("IP Address not available. Please establish connection.")
                 Else
@@ -335,22 +356,23 @@ Public Class Form1
         Catch err As ManagementException
             MessageBox.Show("An error occurred while querying for IPAddress data: " & err.Message)
         End Try
+        TSSL1.Text = "Ready"
     End Sub
 
     Private Sub BtnDHCP_Click(sender As System.Object, e As System.EventArgs) Handles BtnDHCP.Click
-
+        TSSL1.Text = "Changing to DHCP..."
         Try
 
-            Dim classInstance As New ManagementObject( _
-                "root\CIMV2", _
-                "Win32_NetworkAdapterConfiguration.Index='" & DeviceID & "'", _
+            Dim classInstance As New ManagementObject(
+                "root\CIMV2",
+                "Win32_NetworkAdapterConfiguration.Index='" & DeviceID & "'",
                 Nothing)
 
             ' no method [in] parameters to define
 
 
             ' Execute the method and obtain the return values.
-            Dim outParams As ManagementBaseObject = _
+            Dim outParams As ManagementBaseObject =
                 classInstance.InvokeMethod("EnableDHCP", Nothing, Nothing)
 
             ' List outParams
@@ -361,21 +383,23 @@ Public Class Form1
 
             MessageBox.Show("An error occurred while trying to execute the EnableDHCP method: " & err.Message)
         End Try
+        TSSL1.Text = "Ready"
     End Sub
 
     Private Sub BtnNetDisable_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetDisable.Click
+        TSSL1.Text = "Disabling network adapter..."
         Try
 
-            Dim classInstance As New ManagementObject( _
-                "root\CIMV2", _
-                "Win32_NetworkAdapter.DeviceID='" & DeviceID & "'", _
+            Dim classInstance As New ManagementObject(
+                "root\CIMV2",
+                "Win32_NetworkAdapter.DeviceID='" & DeviceID & "'",
                 Nothing)
 
             ' no method [in] parameters to define
 
 
             ' Execute the method and obtain the return values.
-            Dim outParams As ManagementBaseObject = _
+            Dim outParams As ManagementBaseObject =
                 classInstance.InvokeMethod("Disable", Nothing, Nothing)
 
             ' List outParams
@@ -386,22 +410,23 @@ Public Class Form1
 
             MessageBox.Show("An error occurred while trying to execute the NetworkDisable method: " & err.Message)
         End Try
-
+        TSSL1.Text = "Ready"
     End Sub
 
     Private Sub BtnNetEnable_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetEnable.Click
+        TSSL1.Text = "Enabling network adapter..."
         Try
 
-            Dim classInstance As New ManagementObject( _
-                "root\CIMV2", _
-                "Win32_NetworkAdapter.DeviceID='" & DeviceID & "'", _
+            Dim classInstance As New ManagementObject(
+                "root\CIMV2",
+                "Win32_NetworkAdapter.DeviceID='" & DeviceID & "'",
                 Nothing)
 
             ' no method [in] parameters to define
 
 
             ' Execute the method and obtain the return values.
-            Dim outParams As ManagementBaseObject = _
+            Dim outParams As ManagementBaseObject =
                 classInstance.InvokeMethod("Enable", Nothing, Nothing)
 
             ' List outParams
@@ -412,14 +437,16 @@ Public Class Form1
 
             MessageBox.Show("An error occurred while trying to execute the NetworkEnable method: " & err.Message)
         End Try
+        TSSL1.Text = "Ready"
     End Sub
 
- 
+
 
     Private Sub BtnGetMAC_Click(sender As System.Object, e As System.EventArgs) Handles BtnGetMAC.Click
+        TSSL1.Text = "Getting MAC address..."
         Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
+            Dim searcher As New ManagementObjectSearcher(
+                "root\CIMV2",
                 "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & DeviceID) ' declare which NETWORK INDEX = from combobox index
 
 
@@ -432,9 +459,10 @@ Public Class Form1
         Catch err As ManagementException
             MessageBox.Show("An error occurred while querying for MAC Address data: " & err.Message)
         End Try
+        TSSL1.Text = "Ready"
     End Sub
 
-   
+
     Private Sub BtnOpenNetworkConnections_Click(sender As System.Object, e As System.EventArgs) Handles BtnOpenNetworkConnections.Click
         Shell("C:\Windows\System32\control.exe" & " ncpa.cpl", 1)
     End Sub
@@ -455,56 +483,56 @@ Public Class Form1
 
         If fd.ShowDialog() = DialogResult.OK Then
             FilePath = fd.FileName
-        
-        ' execute command
-        Dim filename As String = FilePath
-        Dim ValidFile As String
-        Dim ReadConfigLine As String
-        Dim SetupName As String
-        Dim IPLine As String
-        Dim SubnetLine As String
-        Dim GatewayLine As String
-        Dim Count As Integer = 4
-        Dim Number As Integer = 0
 
-        'Load File and check 1st line to validate MDRIVE file
+            ' execute command
+            Dim filename As String = FilePath
+            Dim ValidFile As String
+            Dim ReadConfigLine As String
+            Dim SetupName As String
+            Dim IPLine As String
+            Dim SubnetLine As String
+            Dim GatewayLine As String
+            Dim Count As Integer = 4
+            Dim Number As Integer = 0
 
-        ValidFile = (ReadALine(filename, GetNumberOfLines(filename), 1))
-        If ValidFile = "Name=IPChangerConfig" Then
-            Do While Count <= NumberOfLinesConfig
-                ReadConfigLine = (ReadALine(filename, GetNumberOfLines(filename), Count))
+            'Load File and check 1st line to validate MDRIVE file
 
-                If ReadConfigLine.Contains("[") Then
-                    Dim SetupNameArr1() As String = ReadConfigLine.Split("[")
-                    Dim SetupNameArr2() = SetupNameArr1(1).Split("]")
-                    SetupName = SetupNameArr2(0)
-                    ComboBox1.Items.Add(SetupName)
-                    Number += 1
-                    'SetupNameFull(Number) = SetupName
-                End If
+            ValidFile = (ReadALine(filename, GetNumberOfLines(filename), 1))
+            If ValidFile = "Name=IPChangerConfig" Then
+                Do While Count <= NumberOfLinesConfig
+                    ReadConfigLine = (ReadALine(filename, GetNumberOfLines(filename), Count))
 
-                If ReadConfigLine.Contains("IP") Then
-                    Dim IPLineArr1() As String = ReadConfigLine.Split("=")
-                    IPLine = IPLineArr1(1)
+                    If ReadConfigLine.Contains("[") Then
+                        Dim SetupNameArr1() As String = ReadConfigLine.Split("[")
+                        Dim SetupNameArr2() = SetupNameArr1(1).Split("]")
+                        SetupName = SetupNameArr2(0)
+                        ComboBox1.Items.Add(SetupName)
+                        Number += 1
+                        'SetupNameFull(Number) = SetupName
+                    End If
 
-                    IPAddress(Number) = IPLine
-                End If
+                    If ReadConfigLine.Contains("IP") Then
+                        Dim IPLineArr1() As String = ReadConfigLine.Split("=")
+                        IPLine = IPLineArr1(1)
 
-                If ReadConfigLine.Contains("SUBNET") Then
-                    Dim SubnetLineArr1() As String = ReadConfigLine.Split("=")
-                    SubnetLine = SubnetLineArr1(1)
+                        IPAddress(Number) = IPLine
+                    End If
 
-                    Subnet(Number) = SubnetLine
-                End If
+                    If ReadConfigLine.Contains("SUBNET") Then
+                        Dim SubnetLineArr1() As String = ReadConfigLine.Split("=")
+                        SubnetLine = SubnetLineArr1(1)
 
-                If ReadConfigLine.Contains("GATEWAY") Then
-                    Dim GatewayLineArr1() As String = ReadConfigLine.Split("=")
-                    GatewayLine = GatewayLineArr1(1)
+                        Subnet(Number) = SubnetLine
+                    End If
 
-                    Gateway(Number) = GatewayLine
-                End If
+                    If ReadConfigLine.Contains("GATEWAY") Then
+                        Dim GatewayLineArr1() As String = ReadConfigLine.Split("=")
+                        GatewayLine = GatewayLineArr1(1)
 
-                Count += 1
+                        Gateway(Number) = GatewayLine
+                    End If
+
+                    Count += 1
                 Loop
             Else
                 MessageBox.Show(" Config File is either not valid or corrupted.", "Error",
@@ -514,9 +542,9 @@ Public Class Form1
       MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ' If file is loaded successfully then enable auto load file checkbox, else disable
-            CheckBox1.Enabled = True
+            Form2.CheckBox1.Enabled = True
         Else
-            CheckBox1.Enabled = False
+            Form2.CheckBox1.Enabled = False
         End If
 
     End Sub
@@ -526,9 +554,10 @@ Public Class Form1
         System.Diagnostics.Process.Start(EditFileApp, FilePath)
     End Sub
 
-  
+
 
     Public Sub FunctionAutoLoadConfigFile(ByVal AutoLoad As String) '//FUNCTION CHANGE BUTTON STATE
+        TSSL1.Text = "Loading config file..."
         ' execute command
         Dim filename As String = My.Settings.ConfigFilePath
         Dim ValidFile As String
@@ -579,30 +608,21 @@ Public Class Form1
 
                 Count += 1
             Loop
- 
+
         Else
             MessageBox.Show(" Config File is either not valid or corrupted.", "Error",
 MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
-
+        TSSL1.Text = "Ready"
     End Sub
     Public Sub FunctionAutoLoadLastNicUsed(ByVal AutoLoadNIC As String) '//FUNCTION CHANGE BUTTON STATE
         ComboBox3.SelectedItem = My.Settings.LastNICUsed
     End Sub
 
-    Private Sub CheckBox1_Click(sender As Object, e As System.EventArgs) Handles CheckBox1.Click
-        If CheckBox1.Checked Then
-            My.Settings.ConfigFilePath = FilePath
-            My.Settings.Save()
-        End If
+
+    Private Sub BtnSettings_Click(sender As Object, e As EventArgs) Handles BtnSettings.Click
+        Form2.StartPosition = FormStartPosition.Manual
+        Form2.Location = Me.Location
+        Form2.Show()
     End Sub
-
-    Private Sub CheckBox2_Click(sender As Object, e As System.EventArgs) Handles CheckBox2.Click
-        If CheckBox2.Checked Then
-            My.Settings.LastNICUsed = ComboBox3.SelectedItem
-            My.Settings.Save()
-        End If
-    End Sub
-
-
 End Class

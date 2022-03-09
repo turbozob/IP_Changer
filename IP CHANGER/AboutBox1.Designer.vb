@@ -83,7 +83,7 @@ Partial Class AboutBox1
         Me.TB_Description.Name = "TB_Description"
         Me.TB_Description.ReadOnly = True
         Me.TB_Description.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TB_Description.Size = New System.Drawing.Size(313, 88)
+        Me.TB_Description.Size = New System.Drawing.Size(313, 210)
         Me.TB_Description.TabIndex = 32
         Me.TB_Description.TabStop = False
         Me.TB_Description.Text = resources.GetString("TB_Description.Text")
@@ -101,18 +101,18 @@ Partial Class AboutBox1
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Button1.Location = New System.Drawing.Point(120, 260)
+        Me.Button1.Location = New System.Drawing.Point(111, 346)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 37
-        Me.Button1.Text = "OK"
+        Me.Button1.Text = "Close"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'AboutBox1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(314, 292)
+        Me.ClientSize = New System.Drawing.Size(304, 381)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
