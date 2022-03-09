@@ -303,8 +303,8 @@ Public Class Form1
                 classInstance.InvokeMethod("Disable", Nothing, Nothing)
 
             ' List outParams
-            MessageBox.Show("Network Disabled", "Notification",
-                   MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            ' MessageBox.Show("Network Disabled", "Notification",
+            'MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
         Catch err As ManagementException
 
@@ -329,8 +329,8 @@ Public Class Form1
                 classInstance.InvokeMethod("Enable", Nothing, Nothing)
 
             ' List outParams
-            MessageBox.Show("Network Enabled", "Notification",
-                   MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            ' MessageBox.Show("Network Enabled", "Notification",
+            'MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
         Catch err As ManagementException
 
@@ -359,4 +359,7 @@ Public Class Form1
     End Sub
 
    
+    Private Sub BtnOpenNetworkConnections_Click(sender As System.Object, e As System.EventArgs) Handles BtnOpenNetworkConnections.Click
+        Shell("C:\Windows\System32\control.exe" & " ncpa.cpl", 1)
+    End Sub
 End Class

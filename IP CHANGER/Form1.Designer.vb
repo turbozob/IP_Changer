@@ -32,19 +32,21 @@ Partial Class Form1
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.LBLNetCard = New System.Windows.Forms.Label()
+        Me.LBLDeviceID = New System.Windows.Forms.Label()
+        Me.BtnSetup = New System.Windows.Forms.Button()
+        Me.BtnOpenNetworkConnections = New System.Windows.Forms.Button()
+        Me.BtnGetMAC = New System.Windows.Forms.Button()
         Me.BtnNetEnable = New System.Windows.Forms.Button()
         Me.BtnNetDisable = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.BtnGetMAC = New System.Windows.Forms.Button()
         Me.BtnDHCP = New System.Windows.Forms.Button()
         Me.BtnGetIP = New System.Windows.Forms.Button()
         Me.BtnChangeIP = New System.Windows.Forms.Button()
         Me.BtnNetScan = New System.Windows.Forms.Button()
         Me.BtnABOUT = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.LBLNetCard = New System.Windows.Forms.Label()
-        Me.LBLDeviceID = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -83,7 +85,7 @@ Partial Class Form1
         Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(137, 29)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(145, 22)
+        Me.TextBox1.Size = New System.Drawing.Size(163, 22)
         Me.TextBox1.TabIndex = 6
         '
         'TextBox2
@@ -92,7 +94,7 @@ Partial Class Form1
         Me.TextBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.TextBox2.Location = New System.Drawing.Point(137, 57)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(145, 22)
+        Me.TextBox2.Size = New System.Drawing.Size(163, 22)
         Me.TextBox2.TabIndex = 7
         '
         'TextBox3
@@ -101,7 +103,7 @@ Partial Class Form1
         Me.TextBox3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.TextBox3.Location = New System.Drawing.Point(137, 85)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(145, 22)
+        Me.TextBox3.Size = New System.Drawing.Size(163, 22)
         Me.TextBox3.TabIndex = 8
         '
         'ComboBox1
@@ -109,10 +111,9 @@ Partial Class Form1
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"SMM TRANSPORTI", "BALANCE", "ASTEC", "TOVORNI TRAK 1 IN 2", "POLTOV. OBREZOVALNI STROJ", "KOKUSAI 1", "KOKUSAI 2", "YXLON 1", "YXLON 2", "VEZNI TRANSPORTER", "AVS 1 IN 2", "4JET LASER ENGRAVER", "PH BRUSILNI STROJ", "MATTEUZZI"})
         Me.ComboBox1.Location = New System.Drawing.Point(137, 113)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(145, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(163, 21)
         Me.ComboBox1.TabIndex = 29
         '
         'Label6
@@ -121,9 +122,9 @@ Partial Class Form1
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.Label6.Location = New System.Drawing.Point(1, 121)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(111, 13)
+        Me.Label6.Size = New System.Drawing.Size(72, 13)
         Me.Label6.TabIndex = 31
-        Me.Label6.Text = "Select IP by Machine"
+        Me.Label6.Text = "Setup Name:"
         '
         'ComboBox3
         '
@@ -132,115 +133,18 @@ Partial Class Form1
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(2, 2)
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(280, 21)
+        Me.ComboBox3.Size = New System.Drawing.Size(298, 21)
         Me.ComboBox3.TabIndex = 41
-        '
-        'BtnNetEnable
-        '
-        Me.BtnNetEnable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnNetEnable.Image = Global.WindowsApplication1.My.Resources.Resources.enable_16x16
-        Me.BtnNetEnable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnNetEnable.Location = New System.Drawing.Point(74, 208)
-        Me.BtnNetEnable.Name = "BtnNetEnable"
-        Me.BtnNetEnable.Size = New System.Drawing.Size(145, 32)
-        Me.BtnNetEnable.TabIndex = 51
-        Me.BtnNetEnable.Text = "Enable Network"
-        Me.BtnNetEnable.UseVisualStyleBackColor = True
-        '
-        'BtnNetDisable
-        '
-        Me.BtnNetDisable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnNetDisable.Image = CType(resources.GetObject("BtnNetDisable.Image"), System.Drawing.Image)
-        Me.BtnNetDisable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnNetDisable.Location = New System.Drawing.Point(74, 246)
-        Me.BtnNetDisable.Name = "BtnNetDisable"
-        Me.BtnNetDisable.Size = New System.Drawing.Size(145, 32)
-        Me.BtnNetDisable.TabIndex = 50
-        Me.BtnNetDisable.Text = "Disable Network"
-        Me.BtnNetDisable.UseVisualStyleBackColor = True
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label4.Location = New System.Drawing.Point(4, 437)
+        Me.Label4.Location = New System.Drawing.Point(5, 330)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(89, 13)
         Me.Label4.TabIndex = 53
-        Me.Label4.Text = "IP Changer v2.2"
-        '
-        'BtnGetMAC
-        '
-        Me.BtnGetMAC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnGetMAC.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_Out
-        Me.BtnGetMAC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnGetMAC.Location = New System.Drawing.Point(73, 398)
-        Me.BtnGetMAC.Name = "BtnGetMAC"
-        Me.BtnGetMAC.Size = New System.Drawing.Size(145, 32)
-        Me.BtnGetMAC.TabIndex = 52
-        Me.BtnGetMAC.Text = "Get MAC Address"
-        Me.BtnGetMAC.UseVisualStyleBackColor = True
-        '
-        'BtnDHCP
-        '
-        Me.BtnDHCP.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnDHCP.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_In
-        Me.BtnDHCP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnDHCP.Location = New System.Drawing.Point(74, 322)
-        Me.BtnDHCP.Name = "BtnDHCP"
-        Me.BtnDHCP.Size = New System.Drawing.Size(145, 32)
-        Me.BtnDHCP.TabIndex = 48
-        Me.BtnDHCP.Text = "DHCP Enable"
-        Me.BtnDHCP.UseVisualStyleBackColor = True
-        '
-        'BtnGetIP
-        '
-        Me.BtnGetIP.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnGetIP.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_Out
-        Me.BtnGetIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnGetIP.Location = New System.Drawing.Point(73, 360)
-        Me.BtnGetIP.Name = "BtnGetIP"
-        Me.BtnGetIP.Size = New System.Drawing.Size(145, 32)
-        Me.BtnGetIP.TabIndex = 47
-        Me.BtnGetIP.Text = "Get IP Address"
-        Me.BtnGetIP.UseVisualStyleBackColor = True
-        '
-        'BtnChangeIP
-        '
-        Me.BtnChangeIP.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnChangeIP.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_In
-        Me.BtnChangeIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnChangeIP.Location = New System.Drawing.Point(74, 284)
-        Me.BtnChangeIP.Name = "BtnChangeIP"
-        Me.BtnChangeIP.Size = New System.Drawing.Size(145, 32)
-        Me.BtnChangeIP.TabIndex = 46
-        Me.BtnChangeIP.Text = "Change IP Address"
-        Me.BtnChangeIP.UseVisualStyleBackColor = True
-        '
-        'BtnNetScan
-        '
-        Me.BtnNetScan.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnNetScan.Image = Global.WindowsApplication1.My.Resources.Resources.Network_16x16
-        Me.BtnNetScan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnNetScan.Location = New System.Drawing.Point(74, 170)
-        Me.BtnNetScan.Name = "BtnNetScan"
-        Me.BtnNetScan.Size = New System.Drawing.Size(146, 32)
-        Me.BtnNetScan.TabIndex = 40
-        Me.BtnNetScan.Text = "Scan Network Devices"
-        Me.BtnNetScan.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnNetScan.UseVisualStyleBackColor = True
-        '
-        'BtnABOUT
-        '
-        Me.BtnABOUT.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnABOUT.Image = Global.WindowsApplication1.My.Resources.Resources.get_info_16X16
-        Me.BtnABOUT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnABOUT.Location = New System.Drawing.Point(258, 429)
-        Me.BtnABOUT.Name = "BtnABOUT"
-        Me.BtnABOUT.Size = New System.Drawing.Size(24, 21)
-        Me.BtnABOUT.TabIndex = 38
-        Me.BtnABOUT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnABOUT.UseVisualStyleBackColor = True
+        Me.Label4.Text = "IP Changer v2.4"
         '
         'Label5
         '
@@ -282,11 +186,134 @@ Partial Class Form1
         Me.LBLDeviceID.TabIndex = 58
         Me.LBLDeviceID.Text = "None"
         '
+        'BtnSetup
+        '
+        Me.BtnSetup.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnSetup.Image = Global.WindowsApplication1.My.Resources.Resources.setting
+        Me.BtnSetup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnSetup.Location = New System.Drawing.Point(246, 322)
+        Me.BtnSetup.Name = "BtnSetup"
+        Me.BtnSetup.Size = New System.Drawing.Size(25, 25)
+        Me.BtnSetup.TabIndex = 60
+        Me.BtnSetup.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnSetup.UseVisualStyleBackColor = True
+        '
+        'BtnOpenNetworkConnections
+        '
+        Me.BtnOpenNetworkConnections.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnOpenNetworkConnections.Image = Global.WindowsApplication1.My.Resources.Resources.Network_16x16
+        Me.BtnOpenNetworkConnections.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnOpenNetworkConnections.Location = New System.Drawing.Point(4, 208)
+        Me.BtnOpenNetworkConnections.Name = "BtnOpenNetworkConnections"
+        Me.BtnOpenNetworkConnections.Size = New System.Drawing.Size(146, 32)
+        Me.BtnOpenNetworkConnections.TabIndex = 59
+        Me.BtnOpenNetworkConnections.Text = "Open Network"
+        Me.BtnOpenNetworkConnections.UseVisualStyleBackColor = True
+        '
+        'BtnGetMAC
+        '
+        Me.BtnGetMAC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnGetMAC.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_Out
+        Me.BtnGetMAC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnGetMAC.Location = New System.Drawing.Point(155, 284)
+        Me.BtnGetMAC.Name = "BtnGetMAC"
+        Me.BtnGetMAC.Size = New System.Drawing.Size(145, 32)
+        Me.BtnGetMAC.TabIndex = 52
+        Me.BtnGetMAC.Text = "Get MAC Address"
+        Me.BtnGetMAC.UseVisualStyleBackColor = True
+        '
+        'BtnNetEnable
+        '
+        Me.BtnNetEnable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnNetEnable.Image = Global.WindowsApplication1.My.Resources.Resources.enable_16x16
+        Me.BtnNetEnable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnNetEnable.Location = New System.Drawing.Point(4, 246)
+        Me.BtnNetEnable.Name = "BtnNetEnable"
+        Me.BtnNetEnable.Size = New System.Drawing.Size(145, 32)
+        Me.BtnNetEnable.TabIndex = 51
+        Me.BtnNetEnable.Text = "Enable Network"
+        Me.BtnNetEnable.UseVisualStyleBackColor = True
+        '
+        'BtnNetDisable
+        '
+        Me.BtnNetDisable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnNetDisable.Image = CType(resources.GetObject("BtnNetDisable.Image"), System.Drawing.Image)
+        Me.BtnNetDisable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnNetDisable.Location = New System.Drawing.Point(4, 284)
+        Me.BtnNetDisable.Name = "BtnNetDisable"
+        Me.BtnNetDisable.Size = New System.Drawing.Size(145, 32)
+        Me.BtnNetDisable.TabIndex = 50
+        Me.BtnNetDisable.Text = "Disable Network"
+        Me.BtnNetDisable.UseVisualStyleBackColor = True
+        '
+        'BtnDHCP
+        '
+        Me.BtnDHCP.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnDHCP.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_In
+        Me.BtnDHCP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnDHCP.Location = New System.Drawing.Point(156, 208)
+        Me.BtnDHCP.Name = "BtnDHCP"
+        Me.BtnDHCP.Size = New System.Drawing.Size(145, 32)
+        Me.BtnDHCP.TabIndex = 48
+        Me.BtnDHCP.Text = "DHCP Enable"
+        Me.BtnDHCP.UseVisualStyleBackColor = True
+        '
+        'BtnGetIP
+        '
+        Me.BtnGetIP.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnGetIP.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_Out
+        Me.BtnGetIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnGetIP.Location = New System.Drawing.Point(155, 246)
+        Me.BtnGetIP.Name = "BtnGetIP"
+        Me.BtnGetIP.Size = New System.Drawing.Size(145, 32)
+        Me.BtnGetIP.TabIndex = 47
+        Me.BtnGetIP.Text = "Get IP Address"
+        Me.BtnGetIP.UseVisualStyleBackColor = True
+        '
+        'BtnChangeIP
+        '
+        Me.BtnChangeIP.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnChangeIP.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_In
+        Me.BtnChangeIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnChangeIP.Location = New System.Drawing.Point(156, 170)
+        Me.BtnChangeIP.Name = "BtnChangeIP"
+        Me.BtnChangeIP.Size = New System.Drawing.Size(145, 32)
+        Me.BtnChangeIP.TabIndex = 46
+        Me.BtnChangeIP.Text = "Change IP Address"
+        Me.BtnChangeIP.UseVisualStyleBackColor = True
+        '
+        'BtnNetScan
+        '
+        Me.BtnNetScan.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnNetScan.Image = Global.WindowsApplication1.My.Resources.Resources.Network_16x16
+        Me.BtnNetScan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnNetScan.Location = New System.Drawing.Point(4, 170)
+        Me.BtnNetScan.Name = "BtnNetScan"
+        Me.BtnNetScan.Size = New System.Drawing.Size(146, 32)
+        Me.BtnNetScan.TabIndex = 40
+        Me.BtnNetScan.Text = "Scan Network Devices"
+        Me.BtnNetScan.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnNetScan.UseVisualStyleBackColor = True
+        '
+        'BtnABOUT
+        '
+        Me.BtnABOUT.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnABOUT.Image = Global.WindowsApplication1.My.Resources.Resources.get_info_16X16
+        Me.BtnABOUT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnABOUT.Location = New System.Drawing.Point(277, 322)
+        Me.BtnABOUT.Name = "BtnABOUT"
+        Me.BtnABOUT.Size = New System.Drawing.Size(25, 25)
+        Me.BtnABOUT.TabIndex = 38
+        Me.BtnABOUT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnABOUT.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(287, 452)
+        Me.ClientSize = New System.Drawing.Size(304, 348)
+        Me.Controls.Add(Me.BtnSetup)
+        Me.Controls.Add(Me.BtnOpenNetworkConnections)
         Me.Controls.Add(Me.LBLDeviceID)
         Me.Controls.Add(Me.LBLNetCard)
         Me.Controls.Add(Me.Label7)
@@ -342,5 +369,7 @@ Partial Class Form1
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents LBLNetCard As System.Windows.Forms.Label
     Friend WithEvents LBLDeviceID As System.Windows.Forms.Label
+    Friend WithEvents BtnOpenNetworkConnections As System.Windows.Forms.Button
+    Friend WithEvents BtnSetup As System.Windows.Forms.Button
 
 End Class

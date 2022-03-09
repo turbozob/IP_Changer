@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_64x64.ico" />
+    <None Include="Resources\setting.png" />
     <None Include="Resources\disable 16x16.png" />
     <None Include="Resources\Network 16x16.png" />
     <None Include="Resources\aboutUsBanner2.jpg" />
