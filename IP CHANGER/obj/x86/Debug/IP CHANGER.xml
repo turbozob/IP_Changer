@@ -39,10 +39,6 @@ IPCHANGER
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:WindowsApplication1.My.Resources.Resources.Elektro_Dolfar_trans_horiz">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
 </member><member name="P:WindowsApplication1.My.Resources.Resources.enable_16x16">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

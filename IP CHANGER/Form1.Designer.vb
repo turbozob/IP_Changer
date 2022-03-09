@@ -186,7 +186,7 @@ Partial Class Form1
         Me.BtnEdit.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.BtnEdit.Image = Global.WindowsApplication1.My.Resources.Resources.Edit_File
         Me.BtnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnEdit.Location = New System.Drawing.Point(28, 322)
+        Me.BtnEdit.Location = New System.Drawing.Point(246, 322)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(25, 25)
         Me.BtnEdit.TabIndex = 63
@@ -198,7 +198,7 @@ Partial Class Form1
         Me.BtnOpen.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.BtnOpen.Image = Global.WindowsApplication1.My.Resources.Resources.Open_File
         Me.BtnOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnOpen.Location = New System.Drawing.Point(4, 322)
+        Me.BtnOpen.Location = New System.Drawing.Point(215, 322)
         Me.BtnOpen.Name = "BtnOpen"
         Me.BtnOpen.Size = New System.Drawing.Size(25, 25)
         Me.BtnOpen.TabIndex = 60
@@ -319,7 +319,7 @@ Partial Class Form1
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadNic
         Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadNic", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox2.Location = New System.Drawing.Point(83, 334)
+        Me.CheckBox2.Location = New System.Drawing.Point(4, 337)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(150, 17)
         Me.CheckBox2.TabIndex = 65
@@ -331,7 +331,7 @@ Partial Class Form1
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadConfigFile
         Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadConfigFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox1.Location = New System.Drawing.Point(83, 319)
+        Me.CheckBox1.Location = New System.Drawing.Point(4, 322)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(138, 17)
         Me.CheckBox1.TabIndex = 64

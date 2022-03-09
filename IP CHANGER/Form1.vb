@@ -31,6 +31,7 @@ Public Class Form1
 
             If My.Computer.FileSystem.FileExists(My.Settings.ConfigFilePath) Then
                 FunctionAutoLoadConfigFile(1)
+                FilePath = My.Settings.ConfigFilePath
             Else
                 MessageBox.Show("Config File Not Found. Auto Load File is Disabled.", "Open Config File At Startup",
                   MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
