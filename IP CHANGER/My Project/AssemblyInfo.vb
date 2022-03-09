@@ -14,7 +14,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("This program is free software. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.")>
 <Assembly: AssemblyCompany("ID ELEKTRONIK")>
 <Assembly: AssemblyProduct("IP CHANGER")>
-<Assembly: AssemblyCopyright("Copyright © ID Elektronik 2019")>
+<Assembly: AssemblyCopyright("Copyright © ID Elektronik 2021")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(True)> 
@@ -33,7 +33,9 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.4.9.1")>
-<Assembly: AssemblyFileVersion("2.4.9.1")>
+<Assembly: AssemblyVersion("2.5.0.0")>
+<Assembly: AssemblyFileVersion("2.5.0.0")>
 
-<Assembly: NeutralResourcesLanguageAttribute("en")> 
+<Assembly: NeutralResourcesLanguageAttribute("en")>
+
+<Assembly: log4net.Config.XmlConfigurator(ConfigFile:="IP CHANGER.exe.log4net", Watch:=True)>

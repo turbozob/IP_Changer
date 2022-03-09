@@ -1,0 +1,80 @@
+﻿==================
+=== CHANGE LOG ===
+=== IP CHANGER ===
+==================
+
+## [2.5.0.0] -  2019- 07- 03
+• ADDED
+-> DONE!  open config clears the setup list // fix: make list clear if new config file is selected before it is being loaded or pressed OK
+-> DONE! improve: when IP changed, get IP and compare if successful, now it is only looking for command completed
+-> DONE! improve: add log4net
+-> DONE! added try catch on reading config file if invalid entry example char / is used instead of =
+
+## [2.4.9.1]
+• ADDED
+->  Fixed last used NIC not loaded correctly (Added My.Settings.Save() when network device on change finished)
+->  Changed EULA and about form
+->  Changed Settings checkbox description for better understanding
+->  New: Settings added checkbox5 "check IPv6 address", on "Get IP" command if cb5 not checked for loop exits showing only IPv4
+
+
+## [2.4.9.0]
+• ADDED
+->  FIXED : Win10 če nisi admin, napiše da je IP zamenjan ampak v resnici ni, ker ni admin pravic. Run as admin potem deluje
+Spremenjen project manifest file: Solution Explorer -> -> > My Project -> -> > View Windows Settings   <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+->  FIXED : Ne moreš zamenjati IPja če je "ping" error. Vpišeš IP in daš change IP, napiše error ping in prekine menjavo.
+Dodan msgbox z yes no, v primeru ping error lahko nadaljuješ ali prekineš menjavo IPja
+->  Novo: Settings okno,checkbox3 in 4, v glavnem oknu StatusBar na dnu za informacije kaj program dela
+->  Checkbox3 je "Check used IP" med menjavo IP naslova
+->  Checkbox4 je "Check NIC enabled" med menjavo IP naslova
+->  Namesto checkbox.checked uporabljeni My.Settings.xxx za določanje stanja checkboxov
+
+
+## [2.4.8.0]
+• ADDED
+->  Fix IP zaščita ne deluje če je mrežna izklopljena
+->  Dodan pogoj za izvajanje funkcij če je mrežna vklopljena ali kabel vključen
+->  Onemogočanje tipk, če mrežna ni izbrana
+
+## [2.4.7.0]
+• ADDED
+->  Dodana zaščita ob pred menjavo IPja, program preveri če nastavljeni IP že obstaja v omrežju "ping"
+
+## [2.4.6.0]
+• ADDED
+->  Ob zagonu če klikneš na uredi IP listo ti odpre prazno beležnico. Dodan je 
+FilePath = My.Settings.ConfigFilePath ob Form.Load. Naj ob zagonu prepiše lokacijo config datoteke, če ta obstaja.
+->  About slika zamenjana 
+
+
+## [2.4.5.0]
+• CHANGED
+->  Če odprem config.ini naj se checkbox1 (Auto Load Config File) ne izklopi
+
+## [2.4.4.0]
+• CHANGED
+->  Če kliknem na izbiro mrežnih kartic naj se checkbox2 (save Last used NIC) ne izklopi
+
+## [2.4.3.0]
+• CHANGED
+->  Make single instance application »Naj se izvaja samo en program«
+
+## [2.4.2.0]
+• ADDED
+->  Open File lokacija je C MDRIVE Data. Naj bo C po defaultu nato pa zadnja znana lokacija FIXED
+->  Edit File če ni določene poti odpre samo notepad. Naj se odpre okno za odpreti datoteko ali pa napiše naj uporabnik prej odpre datoteko nato pa ureja.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

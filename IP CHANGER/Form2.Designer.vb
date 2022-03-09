@@ -25,11 +25,12 @@ Partial Class Form2
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.BtnOK = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CB_VerifyIPchange = New System.Windows.Forms.CheckBox()
+        Me.CB_CheckForIPv6 = New System.Windows.Forms.CheckBox()
+        Me.CB_CheckNetConnected = New System.Windows.Forms.CheckBox()
+        Me.CB_CheckIPused = New System.Windows.Forms.CheckBox()
+        Me.CB_LastUsedNIC = New System.Windows.Forms.CheckBox()
+        Me.CB_AutoLoadCfg = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'BtnOK
@@ -47,91 +48,106 @@ Partial Class Form2
         '
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label1.Location = New System.Drawing.Point(0, 137)
+        Me.Label1.Location = New System.Drawing.Point(0, 162)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(302, 13)
         Me.Label1.TabIndex = 71
         Me.Label1.Text = ">>> All changes are saved automatically <<<"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'CheckBox5
+        'CB_VerifyIPchange
         '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Checked = Global.WindowsApplication1.My.MySettings.Default.CheckForIPv6
-        Me.CheckBox5.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "CheckForIPv6", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.CheckBox5.Location = New System.Drawing.Point(12, 104)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(141, 17)
-        Me.CheckBox5.TabIndex = 72
-        Me.CheckBox5.Text = "Check for IPv6 address"
-        Me.CheckBox5.UseVisualStyleBackColor = True
+        Me.CB_VerifyIPchange.AutoSize = True
+        Me.CB_VerifyIPchange.Checked = Global.WindowsApplication1.My.MySettings.Default.VerifyIPaddress
+        Me.CB_VerifyIPchange.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CB_VerifyIPchange.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "VerifyIPaddress", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_VerifyIPchange.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_VerifyIPchange.Location = New System.Drawing.Point(12, 127)
+        Me.CB_VerifyIPchange.Name = "CB_VerifyIPchange"
+        Me.CB_VerifyIPchange.Size = New System.Drawing.Size(167, 17)
+        Me.CB_VerifyIPchange.TabIndex = 73
+        Me.CB_VerifyIPchange.Text = "Verify IP address on change"
+        Me.CB_VerifyIPchange.UseVisualStyleBackColor = True
         '
-        'CheckBox4
+        'CB_CheckForIPv6
         '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Checked = Global.WindowsApplication1.My.MySettings.Default.CheckForEnabledNIC
-        Me.CheckBox4.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "CheckForEnabledNIC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.CheckBox4.Location = New System.Drawing.Point(12, 81)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(213, 17)
-        Me.CheckBox4.TabIndex = 69
-        Me.CheckBox4.Text = "Check for network device connected"
-        Me.CheckBox4.UseVisualStyleBackColor = True
+        Me.CB_CheckForIPv6.AutoSize = True
+        Me.CB_CheckForIPv6.Checked = Global.WindowsApplication1.My.MySettings.Default.CheckForIPv6
+        Me.CB_CheckForIPv6.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "CheckForIPv6", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_CheckForIPv6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_CheckForIPv6.Location = New System.Drawing.Point(12, 104)
+        Me.CB_CheckForIPv6.Name = "CB_CheckForIPv6"
+        Me.CB_CheckForIPv6.Size = New System.Drawing.Size(141, 17)
+        Me.CB_CheckForIPv6.TabIndex = 72
+        Me.CB_CheckForIPv6.Text = "Check for IPv6 address"
+        Me.CB_CheckForIPv6.UseVisualStyleBackColor = True
         '
-        'CheckBox3
+        'CB_CheckNetConnected
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Checked = Global.WindowsApplication1.My.MySettings.Default.CheckForUsedIP
-        Me.CheckBox3.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "CheckForUsedIP", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.CheckBox3.Location = New System.Drawing.Point(12, 58)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(218, 17)
-        Me.CheckBox3.TabIndex = 68
-        Me.CheckBox3.Text = "Check for IP already used on network"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.CB_CheckNetConnected.AutoSize = True
+        Me.CB_CheckNetConnected.Checked = Global.WindowsApplication1.My.MySettings.Default.CheckForEnabledNIC
+        Me.CB_CheckNetConnected.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "CheckForEnabledNIC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_CheckNetConnected.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_CheckNetConnected.Location = New System.Drawing.Point(12, 81)
+        Me.CB_CheckNetConnected.Name = "CB_CheckNetConnected"
+        Me.CB_CheckNetConnected.Size = New System.Drawing.Size(213, 17)
+        Me.CB_CheckNetConnected.TabIndex = 69
+        Me.CB_CheckNetConnected.Text = "Check for network device connected"
+        Me.CB_CheckNetConnected.UseVisualStyleBackColor = True
         '
-        'CheckBox2
+        'CB_CheckIPused
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadNic
-        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadNic", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(12, 35)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(210, 17)
-        Me.CheckBox2.TabIndex = 67
-        Me.CheckBox2.Text = "Remember last used network device"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.CB_CheckIPused.AutoSize = True
+        Me.CB_CheckIPused.Checked = Global.WindowsApplication1.My.MySettings.Default.CheckForUsedIP
+        Me.CB_CheckIPused.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "CheckForUsedIP", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_CheckIPused.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_CheckIPused.Location = New System.Drawing.Point(12, 58)
+        Me.CB_CheckIPused.Name = "CB_CheckIPused"
+        Me.CB_CheckIPused.Size = New System.Drawing.Size(218, 17)
+        Me.CB_CheckIPused.TabIndex = 68
+        Me.CB_CheckIPused.Text = "Check for IP already used on network"
+        Me.CB_CheckIPused.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'CB_LastUsedNIC
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadConfigFile
-        Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadConfigFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.CheckBox1.Location = New System.Drawing.Point(12, 12)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(170, 17)
-        Me.CheckBox1.TabIndex = 66
-        Me.CheckBox1.Text = "Auto load configuration file"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CB_LastUsedNIC.AutoSize = True
+        Me.CB_LastUsedNIC.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadNic
+        Me.CB_LastUsedNIC.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CB_LastUsedNIC.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadNic", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_LastUsedNIC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_LastUsedNIC.Location = New System.Drawing.Point(12, 35)
+        Me.CB_LastUsedNIC.Name = "CB_LastUsedNIC"
+        Me.CB_LastUsedNIC.Size = New System.Drawing.Size(243, 17)
+        Me.CB_LastUsedNIC.TabIndex = 67
+        Me.CB_LastUsedNIC.Text = "Select last used network device on startup"
+        Me.CB_LastUsedNIC.UseVisualStyleBackColor = True
+        '
+        'CB_AutoLoadCfg
+        '
+        Me.CB_AutoLoadCfg.AutoSize = True
+        Me.CB_AutoLoadCfg.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadConfigFile
+        Me.CB_AutoLoadCfg.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadConfigFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_AutoLoadCfg.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_AutoLoadCfg.Location = New System.Drawing.Point(12, 12)
+        Me.CB_AutoLoadCfg.Name = "CB_AutoLoadCfg"
+        Me.CB_AutoLoadCfg.Size = New System.Drawing.Size(227, 17)
+        Me.CB_AutoLoadCfg.TabIndex = 66
+        Me.CB_AutoLoadCfg.Text = "Auto load configuration file on startup"
+        Me.CB_AutoLoadCfg.UseVisualStyleBackColor = True
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(304, 381)
-        Me.Controls.Add(Me.CheckBox5)
+        Me.Controls.Add(Me.CB_VerifyIPchange)
+        Me.Controls.Add(Me.CB_CheckForIPv6)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnOK)
-        Me.Controls.Add(Me.CheckBox4)
-        Me.Controls.Add(Me.CheckBox3)
-        Me.Controls.Add(Me.CheckBox2)
-        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.CB_CheckNetConnected)
+        Me.Controls.Add(Me.CB_CheckIPused)
+        Me.Controls.Add(Me.CB_LastUsedNIC)
+        Me.Controls.Add(Me.CB_AutoLoadCfg)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -145,11 +161,12 @@ Partial Class Form2
 
     End Sub
 
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents CB_LastUsedNIC As CheckBox
+    Friend WithEvents CB_AutoLoadCfg As CheckBox
+    Friend WithEvents CB_CheckIPused As CheckBox
+    Friend WithEvents CB_CheckNetConnected As CheckBox
     Friend WithEvents BtnOK As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents CheckBox5 As CheckBox
+    Friend WithEvents CB_CheckForIPv6 As CheckBox
+    Friend WithEvents CB_VerifyIPchange As CheckBox
 End Class

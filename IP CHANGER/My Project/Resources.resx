@@ -118,29 +118,32 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="get_info_16X16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Slike\get_info_16X16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="log" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\log.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Network 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Network 16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Edit_File" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit_File.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="aboutUsBanner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\aboutUsBanner2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Open_File" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Open_File.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Arrow_In" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Slike\Arrow_In.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="setting" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\setting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="aboutUsBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Slike\aboutUsBanner.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="get_info_16X16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Slike\get_info_16X16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="terminal36x36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\terminal36x36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Slike\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoPNG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoPNG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enable 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enable 16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Arrow_Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Slike\Arrow_Out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,13 +151,22 @@
   <data name="disable 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disable 16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Edit_File" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Edit_File.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Arrow_In" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Slike\Arrow_In.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="enable 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\enable 16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Network 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Network 16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logoPNG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logoPNG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Open_File" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Open_File.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="aboutUsBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Slike\aboutUsBanner.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="terminal 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\terminal 16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

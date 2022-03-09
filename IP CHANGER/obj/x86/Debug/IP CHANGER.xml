@@ -62,6 +62,11 @@ IP CHANGER
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:WindowsApplication1.My.Resources.Resources.log">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:WindowsApplication1.My.Resources.Resources.logoPNG">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -83,6 +88,21 @@ IP CHANGER
 </summary>
 </member>
 <member name="P:WindowsApplication1.My.Resources.Resources.setting">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.terminal_16x16">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.terminal36x36">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:WindowsApplication1.My.Resources.Resources.window">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

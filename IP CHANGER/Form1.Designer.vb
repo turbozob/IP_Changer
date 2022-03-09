@@ -26,16 +26,19 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TB_IPaddress = New System.Windows.Forms.TextBox()
+        Me.TB_Subnet = New System.Windows.Forms.TextBox()
+        Me.TB_Gateway = New System.Windows.Forms.TextBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.CB_NIC = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LBLNetCard = New System.Windows.Forms.Label()
         Me.LBLDeviceID = New System.Windows.Forms.Label()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.TSSL1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.BtnLogs = New System.Windows.Forms.Button()
         Me.BtnSettings = New System.Windows.Forms.Button()
         Me.BtnNetDisable = New System.Windows.Forms.Button()
         Me.BtnGetMAC = New System.Windows.Forms.Button()
@@ -48,8 +51,6 @@ Partial Class Form1
         Me.BtnChangeIP = New System.Windows.Forms.Button()
         Me.BtnNetScan = New System.Windows.Forms.Button()
         Me.BtnABOUT = New System.Windows.Forms.Button()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.TSSL1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -83,35 +84,35 @@ Partial Class Form1
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Default Gateway:"
         '
-        'TextBox1
+        'TB_IPaddress
         '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(137, 29)
-        Me.TextBox1.MaxLength = 15
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(163, 22)
-        Me.TextBox1.TabIndex = 6
+        Me.TB_IPaddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TB_IPaddress.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.TB_IPaddress.Location = New System.Drawing.Point(137, 29)
+        Me.TB_IPaddress.MaxLength = 15
+        Me.TB_IPaddress.Name = "TB_IPaddress"
+        Me.TB_IPaddress.Size = New System.Drawing.Size(163, 22)
+        Me.TB_IPaddress.TabIndex = 6
         '
-        'TextBox2
+        'TB_Subnet
         '
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(137, 57)
-        Me.TextBox2.MaxLength = 15
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(163, 22)
-        Me.TextBox2.TabIndex = 7
+        Me.TB_Subnet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TB_Subnet.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.TB_Subnet.Location = New System.Drawing.Point(137, 57)
+        Me.TB_Subnet.MaxLength = 15
+        Me.TB_Subnet.Name = "TB_Subnet"
+        Me.TB_Subnet.Size = New System.Drawing.Size(163, 22)
+        Me.TB_Subnet.TabIndex = 7
         '
-        'TextBox3
+        'TB_Gateway
         '
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(137, 85)
-        Me.TextBox3.MaxLength = 15
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(163, 22)
-        Me.TextBox3.TabIndex = 8
+        Me.TB_Gateway.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TB_Gateway.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.TB_Gateway.Location = New System.Drawing.Point(137, 85)
+        Me.TB_Gateway.MaxLength = 15
+        Me.TB_Gateway.Name = "TB_Gateway"
+        Me.TB_Gateway.Size = New System.Drawing.Size(163, 22)
+        Me.TB_Gateway.TabIndex = 8
         '
         'ComboBox1
         '
@@ -133,15 +134,15 @@ Partial Class Form1
         Me.Label6.TabIndex = 31
         Me.Label6.Text = "Setup Name:"
         '
-        'ComboBox3
+        'CB_NIC
         '
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(2, 2)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(298, 21)
-        Me.ComboBox3.TabIndex = 41
+        Me.CB_NIC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CB_NIC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.CB_NIC.FormattingEnabled = True
+        Me.CB_NIC.Location = New System.Drawing.Point(2, 2)
+        Me.CB_NIC.Name = "CB_NIC"
+        Me.CB_NIC.Size = New System.Drawing.Size(298, 21)
+        Me.CB_NIC.TabIndex = 41
         '
         'Label5
         '
@@ -183,12 +184,41 @@ Partial Class Form1
         Me.LBLDeviceID.TabIndex = 58
         Me.LBLDeviceID.Text = "None"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Highlight
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSSL1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 359)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(304, 22)
+        Me.StatusStrip1.TabIndex = 67
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'TSSL1
+        '
+        Me.TSSL1.ForeColor = System.Drawing.Color.White
+        Me.TSSL1.Name = "TSSL1"
+        Me.TSSL1.Size = New System.Drawing.Size(45, 17)
+        Me.TSSL1.Text = "Status1"
+        '
+        'BtnLogs
+        '
+        Me.BtnLogs.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnLogs.Image = Global.WindowsApplication1.My.Resources.Resources.terminal_16x16
+        Me.BtnLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnLogs.Location = New System.Drawing.Point(246, 329)
+        Me.BtnLogs.Name = "BtnLogs"
+        Me.BtnLogs.Size = New System.Drawing.Size(25, 25)
+        Me.BtnLogs.TabIndex = 68
+        Me.BtnLogs.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnLogs.UseVisualStyleBackColor = True
+        '
         'BtnSettings
         '
         Me.BtnSettings.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.BtnSettings.Image = Global.WindowsApplication1.My.Resources.Resources.setting
         Me.BtnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnSettings.Location = New System.Drawing.Point(184, 329)
+        Me.BtnSettings.Location = New System.Drawing.Point(153, 329)
         Me.BtnSettings.Name = "BtnSettings"
         Me.BtnSettings.Size = New System.Drawing.Size(25, 25)
         Me.BtnSettings.TabIndex = 66
@@ -224,7 +254,7 @@ Partial Class Form1
         Me.BtnEdit.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.BtnEdit.Image = Global.WindowsApplication1.My.Resources.Resources.Edit_File
         Me.BtnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnEdit.Location = New System.Drawing.Point(246, 329)
+        Me.BtnEdit.Location = New System.Drawing.Point(215, 329)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(25, 25)
         Me.BtnEdit.TabIndex = 63
@@ -236,7 +266,7 @@ Partial Class Form1
         Me.BtnOpen.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.BtnOpen.Image = Global.WindowsApplication1.My.Resources.Resources.Open_File
         Me.BtnOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnOpen.Location = New System.Drawing.Point(215, 329)
+        Me.BtnOpen.Location = New System.Drawing.Point(184, 329)
         Me.BtnOpen.Name = "BtnOpen"
         Me.BtnOpen.Size = New System.Drawing.Size(25, 25)
         Me.BtnOpen.TabIndex = 60
@@ -328,28 +358,12 @@ Partial Class Form1
         Me.BtnABOUT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnABOUT.UseVisualStyleBackColor = True
         '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Highlight
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSSL1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 359)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(304, 22)
-        Me.StatusStrip1.TabIndex = 67
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'TSSL1
-        '
-        Me.TSSL1.ForeColor = System.Drawing.Color.White
-        Me.TSSL1.Name = "TSSL1"
-        Me.TSSL1.Size = New System.Drawing.Size(45, 17)
-        Me.TSSL1.Text = "Status1"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(304, 381)
+        Me.Controls.Add(Me.BtnLogs)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.BtnSettings)
         Me.Controls.Add(Me.BtnNetDisable)
@@ -365,14 +379,14 @@ Partial Class Form1
         Me.Controls.Add(Me.BtnDHCP)
         Me.Controls.Add(Me.BtnGetIP)
         Me.Controls.Add(Me.BtnChangeIP)
-        Me.Controls.Add(Me.ComboBox3)
+        Me.Controls.Add(Me.CB_NIC)
         Me.Controls.Add(Me.BtnNetScan)
         Me.Controls.Add(Me.BtnABOUT)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.TB_Gateway)
+        Me.Controls.Add(Me.TB_Subnet)
+        Me.Controls.Add(Me.TB_IPaddress)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -392,14 +406,14 @@ Partial Class Form1
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents TB_IPaddress As System.Windows.Forms.TextBox
+    Friend WithEvents TB_Subnet As System.Windows.Forms.TextBox
+    Friend WithEvents TB_Gateway As System.Windows.Forms.TextBox
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents BtnABOUT As System.Windows.Forms.Button
     Friend WithEvents BtnNetScan As System.Windows.Forms.Button
-    Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
+    Friend WithEvents CB_NIC As System.Windows.Forms.ComboBox
     Friend WithEvents BtnChangeIP As System.Windows.Forms.Button
     Friend WithEvents BtnGetIP As System.Windows.Forms.Button
     Friend WithEvents BtnDHCP As System.Windows.Forms.Button
@@ -416,4 +430,5 @@ Partial Class Form1
     Friend WithEvents BtnSettings As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents TSSL1 As ToolStripStatusLabel
+    Friend WithEvents BtnLogs As Button
 End Class

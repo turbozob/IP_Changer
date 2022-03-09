@@ -80,7 +80,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property AutoLoadNic() As Boolean
             Get
                 Return CType(Me("AutoLoadNic"),Boolean)
@@ -135,6 +135,18 @@ Namespace My
             End Get
             Set
                 Me("CheckForIPv6") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property VerifyIPaddress() As Boolean
+            Get
+                Return CType(Me("VerifyIPaddress"),Boolean)
+            End Get
+            Set
+                Me("VerifyIPaddress") = value
             End Set
         End Property
     End Class
