@@ -116,7 +116,7 @@ Public Class Form1
         Try
             Dim searcher As New ManagementObjectSearcher( _
                 "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapter")
+                "SELECT * FROM Win32_NetworkAdapter WHERE Manufacturer <> 'Microsoft'")
 
             For Each queryObj As ManagementObject In searcher.Get()
 

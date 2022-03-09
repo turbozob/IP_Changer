@@ -167,7 +167,7 @@ Partial Class Form1
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(89, 13)
         Me.Label4.TabIndex = 53
-        Me.Label4.Text = "IP Changer v2.1"
+        Me.Label4.Text = "IP Changer v2.2"
         '
         'BtnGetMAC
         '
