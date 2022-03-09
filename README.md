@@ -4,7 +4,7 @@ Change IP address of your network adapter.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Change IP address by your costum names with IP, SUBNET and GATEWAY
 
 ## Getting Started
 
@@ -31,8 +31,31 @@ code blocks for commands
 
 Feel free to ask questions.
 ```
-command to run if program contains helper info
+Config.ini file contains all custom selections
 ```
+Open Config.ini file, copy paste SAMPLE preset as many as you need and edit by your needs.
+```
+Save Config.ini file and reload the file or restart application if you have selected to load config on startup.
+```
+
+[Info]
+Name=IPChangerConfig
+Version=1.00.000
+
+[SAMPLE1]
+IPADDRESS=192.168.10.10
+SUBNET=255.255.255.0
+GATEWAY=192.168.10.1
+
+[SAMPLE2]
+IPADDRESS=192.168.20.10
+SUBNET=255.255.255.0
+GATEWAY=192.168.20.1
+
+[SAMPLE3]
+IPADDRESS=192.168.30.10
+SUBNET=255.255.255.0
+GATEWAY=192.168.30.1
 
 ## Authors
 
