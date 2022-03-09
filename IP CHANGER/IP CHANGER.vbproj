@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_64x64.ico" />
+    <None Include="Resources\Elektro Dolfar trans horiz.png" />
     <None Include="Resources\Edit_File.png" />
     <None Include="Resources\Open_File.png" />
     <None Include="Resources\setting.png" />

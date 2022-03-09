@@ -382,7 +382,6 @@ Public Class Form1
 
         If fd.ShowDialog() = DialogResult.OK Then
             FilePath = fd.FileName
-            CheckBox1.Checked = False
         
         ' execute command
         Dim filename As String = FilePath
