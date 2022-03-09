@@ -8,3 +8,4 @@ C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER\IP CHANGER\obj
 C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
 C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb
 C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER\IP CHANGER\obj\x86\Debug\WindowsApplication1.AboutBox1.resources

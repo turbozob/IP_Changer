@@ -5,20 +5,20 @@ Imports System.Windows.Forms
 Imports System.Net.NetworkInformation
 
 Public Class Form1
-    Public Shared MACAddress As String = My.Settings.Setting_String_1
+    Public Shared MACAddress As String = My.Settings.Setting_String_1 'Create Public String, can be used anywhere
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'When application is started put default values in textbox and select saved MAC address
         TextBox1.Text = "192.168.1.123"
         TextBox2.Text = "255.255.255.0"
         TextBox3.Text = "192.168.1.1"
-        Label4.Text = MACAddress
         ComboBox2.Items.Add(MACAddress)
         Me.ComboBox2.SelectedIndex = 0
     End Sub
 
-    'SET STATIC IP BUTTON
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
+    Private Sub BtnCHGIP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCHGIP.Click
+        'SET STATIC IP BUTTON
         Dim IPAddress As String = TextBox1.Text
         Dim SubnetMask As String = TextBox2.Text
         Dim Gateway As String = TextBox3.Text
@@ -27,7 +27,7 @@ Public Class Form1
         Dim objMOC As ManagementObjectCollection = objMC.GetInstances()
 
 
-        If MACAddress <> "" Then
+        If MACAddress <> "" Then 'If desired MAC Address is not equal to nothing then do something else exit
 
             If CheckBoxDHCP.Checked Then
 
@@ -110,39 +110,19 @@ Public Class Form1
     End Sub
 
 
- 
 
-
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim searcher As New ManagementObjectSearcher( _
-                "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapter WHERE AdapterType = 'Ethernet 802.3'")
-
-            For Each queryObj As ManagementObject In searcher.Get()
-
-            Next
-        Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
-        End Try
-
-    End Sub
-
-
-  
-
-    Private Sub Button4SAVE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4SAVE.Click
-
+    Private Sub BtnSAVEMAC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSAVEMAC.Click
+        ' Save settings for MAC Address
         My.Settings.Setting_String_1 = ComboBox2.Text
         My.Settings.Save()
         MACAddress = My.Settings.Setting_String_1
-        Label4.Text = MACAddress
-        MessageBox.Show("MACAddress Saved: " & MACAddress, "SAVE",
+        MessageBox.Show("MACAddress is saved and will be used as default.." & vbCrLf & MACAddress, "SAVE",
     MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
     End Sub
 
 
     Private Sub ComboBox1_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
+        'Select values for desired machine from dropdown list
 
         If ComboBox1.Text = "SMM TRANSPORTI" Then
             TextBox1.Text = "192.168.1.123"
@@ -204,63 +184,24 @@ Public Class Form1
     End Sub
 
     Private Sub CheckBoxDHCP_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBoxDHCP.CheckedChanged
-        If CheckBoxDHCP.Checked = True Then
+        If CheckBoxDHCP.Checked = True Then ' Disable/Enable functions if DHCP is checked
             TextBox1.Enabled = False
             TextBox2.Enabled = False
             TextBox3.Enabled = False
             ComboBox1.Enabled = False
-
-
         End If
-
         If CheckBoxDHCP.Checked = False Then
             TextBox1.Enabled = True
             TextBox2.Enabled = True
             TextBox3.Enabled = True
             ComboBox1.Enabled = True
-
-
         End If
     End Sub
 
-    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-        Try
-            Dim nic As NetworkInterface = Nothing
-            Dim mac_Address As String = ""
-            Dim mac_Address1 As String = ""
+    Private Sub BtnSCANMAC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSCANMAC.Click
+        ' SCAN MAC NETWORKS ADDRESS AND ADD THEM TO DROPDOWN LIST
 
-            For Each nic In NetworkInterface.GetAllNetworkInterfaces
-
-                mac_Address = nic.GetPhysicalAddress().ToString
-                If mac_Address <> "" Then
-                    ComboBox2.Items.Add(mac_Address)
-                    'Label7.Text = mac_Address
-                    'mac_Address = mac_Address.Replace(":", "")
-                    'Label8.Text = mac_Address
-                End If
-                ' For Each COMString As String In My.Computer.Ports.SerialPortNames ' Load all available COM ports.
-                'COMPortsBox.Items.Add(COMString)
-                'Next
-                'COMPortsBox.Sorted = True
-
-
-            Next
-            ComboBox2.Sorted = True
-            nic = Nothing
-
-
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-
-    End Sub
-    Function getMacAddress()
-        Dim nics() As NetworkInterface = NetworkInterface.GetAllNetworkInterfaces()
-        Return nics(1).GetPhysicalAddress.ToString
-    End Function
-
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         ComboBox2.Items.Clear()
         ComboBox2.Text = ""
 
@@ -268,58 +209,40 @@ Public Class Form1
             Dim searcher As New ManagementObjectSearcher( _
                 "root\CIMV2", _
                 "SELECT * FROM Win32_NetworkAdapterConfiguration")
-            For Each queryObj As ManagementObject In searcher.Get()
-                If queryObj("MACAddress") <> "" Then
+            For Each queryObj As ManagementObject In searcher.Get() 'FOR EACH NETWORK DEVICE DO BELOW
+                If queryObj("MACAddress") <> "" Then        ' If MACAddress is not equal to nothing then add it to the drop list
                     ComboBox2.Items.Add(queryObj("MACAddress"))
                 End If
             Next
-        Catch err As ManagementException
+            ComboBox2.Sorted = True
+        Catch err As ManagementException 'Catch error doing above code
             MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
         End Try
 
     End Sub
 
     Private Sub ComboBox2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox2.SelectedIndexChanged
+        'If selected from dropdown list clear MACAddress and copy value from Combobox to MACAddress String
+
         MACAddress = ""
         MACAddress = ComboBox2.Text
-        Label4.Text = MACAddress
-    End Sub
-    'RETRIEVE IP ADDRESS BUTTON
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Dim strHostName As String
-        Dim strIPAddress As String
-        strHostName = System.Net.Dns.GetHostName()
-        Try
-
-            strIPAddress = System.Net.Dns.GetHostEntry(strHostName).AddressList(ComboBox2.SelectedIndex).ToString()
-            MessageBox.Show("IP Address: " & strIPAddress)
-        Catch ex As Exception
-            MessageBox.Show("Please select Network Device first! : " & ex.Message)
-        End Try
-
-
     End Sub
 
-
-    Private Sub Button2_Click_2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub BtnMYIP_Click_2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMYIP.Click
+        'RETRIEVE IP ADDRESS BUTTON
         Try
             Dim searcher As New ManagementObjectSearcher( _
                 "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True")
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True") 'Check only networks which are connected IPEnabled = True
 
             For Each queryObj As ManagementObject In searcher.Get()
 
-                If queryObj("MACAddress") = MACAddress Then
-                    'Console.WriteLine("IPAddress: {0}", queryObj("IPAddress"))
-                    'MessageBox.Show("IP Address: Empty")
-
+                If queryObj("MACAddress") = MACAddress Then 'Check only netowork which has same MACaddress which was selected from dropdown list
                     Dim arrIPAddress As String()
                     arrIPAddress = queryObj("IPAddress")
                     For Each arrValue As String In arrIPAddress
-                        'Console.WriteLine("IPAddress: {0}", arrValue)
                         MessageBox.Show("IP Address: " & arrValue)
                     Next
-
                 End If
             Next
         Catch err As ManagementException
@@ -347,4 +270,11 @@ Public Class Form1
     End Sub
 
     
+    
+    Private Sub BtnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnABOUT.Click
+        'About
+        AboutBox1.Show()
+    End Sub
+
+
 End Class
