@@ -133,9 +133,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ComboBox3_MouseClick(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles ComboBox3.MouseClick
-        CheckBox2.Checked = False
-    End Sub
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
 
