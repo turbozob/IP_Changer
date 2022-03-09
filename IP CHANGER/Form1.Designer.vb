@@ -36,19 +36,19 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LBLNetCard = New System.Windows.Forms.Label()
         Me.LBLDeviceID = New System.Windows.Forms.Label()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.BtnNetDisable = New System.Windows.Forms.Button()
+        Me.BtnGetMAC = New System.Windows.Forms.Button()
         Me.BtnEdit = New System.Windows.Forms.Button()
         Me.BtnOpen = New System.Windows.Forms.Button()
         Me.BtnOpenNetworkConnections = New System.Windows.Forms.Button()
-        Me.BtnGetMAC = New System.Windows.Forms.Button()
         Me.BtnNetEnable = New System.Windows.Forms.Button()
-        Me.BtnNetDisable = New System.Windows.Forms.Button()
         Me.BtnDHCP = New System.Windows.Forms.Button()
         Me.BtnGetIP = New System.Windows.Forms.Button()
         Me.BtnChangeIP = New System.Windows.Forms.Button()
         Me.BtnNetScan = New System.Windows.Forms.Button()
         Me.BtnABOUT = New System.Windows.Forms.Button()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -181,6 +181,54 @@ Partial Class Form1
         Me.LBLDeviceID.TabIndex = 58
         Me.LBLDeviceID.Text = "None"
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadNic
+        Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadNic", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox2.Location = New System.Drawing.Point(4, 337)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(150, 17)
+        Me.CheckBox2.TabIndex = 65
+        Me.CheckBox2.Text = "Auto Save Last Used NIC"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadConfigFile
+        Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadConfigFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox1.Location = New System.Drawing.Point(4, 322)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(138, 17)
+        Me.CheckBox1.TabIndex = 64
+        Me.CheckBox1.Text = "Auto Load Config File"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'BtnNetDisable
+        '
+        Me.BtnNetDisable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnNetDisable.Image = CType(resources.GetObject("BtnNetDisable.Image"), System.Drawing.Image)
+        Me.BtnNetDisable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnNetDisable.Location = New System.Drawing.Point(4, 284)
+        Me.BtnNetDisable.Name = "BtnNetDisable"
+        Me.BtnNetDisable.Size = New System.Drawing.Size(145, 32)
+        Me.BtnNetDisable.TabIndex = 50
+        Me.BtnNetDisable.Text = "Disable Network"
+        Me.BtnNetDisable.UseVisualStyleBackColor = True
+        '
+        'BtnGetMAC
+        '
+        Me.BtnGetMAC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnGetMAC.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_Out
+        Me.BtnGetMAC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnGetMAC.Location = New System.Drawing.Point(155, 284)
+        Me.BtnGetMAC.Name = "BtnGetMAC"
+        Me.BtnGetMAC.Size = New System.Drawing.Size(145, 32)
+        Me.BtnGetMAC.TabIndex = 52
+        Me.BtnGetMAC.Text = "Get MAC Address"
+        Me.BtnGetMAC.UseVisualStyleBackColor = True
+        '
         'BtnEdit
         '
         Me.BtnEdit.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
@@ -217,18 +265,6 @@ Partial Class Form1
         Me.BtnOpenNetworkConnections.Text = "Open Network"
         Me.BtnOpenNetworkConnections.UseVisualStyleBackColor = True
         '
-        'BtnGetMAC
-        '
-        Me.BtnGetMAC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnGetMAC.Image = Global.WindowsApplication1.My.Resources.Resources.Arrow_Out
-        Me.BtnGetMAC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnGetMAC.Location = New System.Drawing.Point(155, 284)
-        Me.BtnGetMAC.Name = "BtnGetMAC"
-        Me.BtnGetMAC.Size = New System.Drawing.Size(145, 32)
-        Me.BtnGetMAC.TabIndex = 52
-        Me.BtnGetMAC.Text = "Get MAC Address"
-        Me.BtnGetMAC.UseVisualStyleBackColor = True
-        '
         'BtnNetEnable
         '
         Me.BtnNetEnable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
@@ -240,18 +276,6 @@ Partial Class Form1
         Me.BtnNetEnable.TabIndex = 51
         Me.BtnNetEnable.Text = "Enable Network"
         Me.BtnNetEnable.UseVisualStyleBackColor = True
-        '
-        'BtnNetDisable
-        '
-        Me.BtnNetDisable.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnNetDisable.Image = CType(resources.GetObject("BtnNetDisable.Image"), System.Drawing.Image)
-        Me.BtnNetDisable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnNetDisable.Location = New System.Drawing.Point(4, 284)
-        Me.BtnNetDisable.Name = "BtnNetDisable"
-        Me.BtnNetDisable.Size = New System.Drawing.Size(145, 32)
-        Me.BtnNetDisable.TabIndex = 50
-        Me.BtnNetDisable.Text = "Disable Network"
-        Me.BtnNetDisable.UseVisualStyleBackColor = True
         '
         'BtnDHCP
         '
@@ -313,30 +337,6 @@ Partial Class Form1
         Me.BtnABOUT.TabIndex = 38
         Me.BtnABOUT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnABOUT.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadNic
-        Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadNic", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox2.Location = New System.Drawing.Point(4, 337)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(150, 17)
-        Me.CheckBox2.TabIndex = 65
-        Me.CheckBox2.Text = "Auto Save Last Used NIC"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadConfigFile
-        Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadConfigFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox1.Location = New System.Drawing.Point(4, 322)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(138, 17)
-        Me.CheckBox1.TabIndex = 64
-        Me.CheckBox1.Text = "Auto Load Config File"
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Form1
         '

@@ -18,24 +18,39 @@ Public Class Form1
     Public Shared IPAddress(100) As String
     Public Shared Subnet(100) As String
     Public Shared Gateway(100) As String
+    Public Shared NetworkConnected As Boolean
+    Public Shared NetworkDisconnected As Boolean
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'When application is started put default values in textbox and select saved MAC address
         BtnNetScan.PerformClick() ' FIRST PERFORM NETWORK SCAN
 
+        ' Disable auto save last used network card
+        CheckBox2.Enabled = False
+
+        ' Is auto save last used network card selected?
         If CheckBox2.Checked Then
             FunctionAutoLoadLastNicUsed(1)
         End If
 
+        ' Disable autoloadfile checkbox at startup
+        CheckBox1.Enabled = False
+
+        ' Is autoloadfile selected?
         If CheckBox1.Checked Then
 
             If My.Computer.FileSystem.FileExists(My.Settings.ConfigFilePath) Then
                 FunctionAutoLoadConfigFile(1)
                 FilePath = My.Settings.ConfigFilePath
+                ' Enable autoloadfile checkbox once config file exists
+                CheckBox1.Enabled = True
             Else
                 MessageBox.Show("Config File Not Found. Auto Load File is Disabled.", "Open Config File At Startup",
                   MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+
+                ' Disable autoloadfile checkbox if config file is not found
                 CheckBox1.Checked = False
+                CheckBox1.Enabled = False
             End If
 
         Else
@@ -45,6 +60,24 @@ Public Class Form1
         End If
         
 
+    End Sub
+    Sub DisableButtons()
+        ' Disable buttons
+        BtnChangeIP.Enabled = False
+        BtnDHCP.Enabled = False
+        BtnGetIP.Enabled = False
+        BtnGetMAC.Enabled = False
+        BtnNetDisable.Enabled = False
+        BtnNetEnable.Enabled = False
+        CheckBox2.Enabled = False
+    End Sub
+    Sub EnableButtons()
+        BtnChangeIP.Enabled = True
+        BtnDHCP.Enabled = True
+        BtnGetIP.Enabled = True
+        BtnGetMAC.Enabled = True
+        BtnNetDisable.Enabled = True
+        BtnNetEnable.Enabled = True
     End Sub
     ' Function Read Text File Line by Line
     Public Function ReadALine(ByVal File_Path As String, ByVal TotalLine As Integer, ByVal Line2Read As Integer) As String
@@ -112,6 +145,7 @@ Public Class Form1
 
     Private Sub BtnNetScan_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetScan.Click
         ComboBox3.Items.Clear()
+        DisableButtons()
 
         Dim Result As String
         Try
@@ -129,16 +163,15 @@ Public Class Form1
 
             Next
         Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+            MessageBox.Show("An error occurred while querying for NetworkCardCaption data: " & err.Message)
         End Try
 
     End Sub
 
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
-
-
-
+        Call EnableButtons()
+        CheckBox2.Enabled = True
         NetCard = ComboBox3.Text
 
         Dim NetCard_Split1() As String = NetCard.Split("]") ' Split string Result based on char "]"
@@ -157,50 +190,86 @@ Public Class Form1
 
             Next
         Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+            MessageBox.Show("An error occurred while querying for NetworkCardIndex data: " & err.Message)
         End Try
 
         LBLDeviceID.Text = DeviceID
 
     End Sub
 
-    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs)
-        ComboBox3.Items.Clear()
-
+    Sub NetEnabled()
         Try
             Dim searcher As New ManagementObjectSearcher( _
-                 "root\CIMV2", _
-                    "SELECT * FROM Win32_NetworkAdapter WHERE Manufacturer <> 'Microsoft'")
-
+                "root\CIMV2", _
+                "SELECT * FROM Win32_NetworkAdapter WHERE Index = " & DeviceID) ' declare which NETWORK INDEX = from combobox index
 
             For Each queryObj As ManagementObject In searcher.Get()
 
-
-                Dim DeviceID As String
-                DeviceID = queryObj("DeviceID")
-                Dim ProductName As String
-                ProductName = queryObj("ProductName")
-                ComboBox3.Items.Add(DeviceID & ProductName)
-
+                If queryObj("NetEnabled") Is Nothing Then
+                    'MessageBox.Show("Network not available. Please establish connection.")
+                    NetworkConnected = False
+                ElseIf queryObj("NetEnabled") = "True" Then
+                    'MessageBox.Show("Network is connected.")
+                    NetworkConnected = True
+                ElseIf queryObj("NetEnabled") = "False" Then
+                    'MessageBox.Show("Network is disconnected")
+                    NetworkConnected = False
+                End If
             Next
         Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+            MessageBox.Show("An error occurred while querying for NetEnabled data: " & err.Message)
+            NetworkConnected = False
         End Try
-
-
-    End Sub ' Not used: Scan only MicroSoft Network Devices (Ethernet only, not Bluetooth etc...)
-
+    End Sub
     ' CHANGE IP, SUBNET AND GATEWAY
     Private Sub BtnChangeIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnChangeIP.Click
         Dim IPAddress As String = TextBox1.Text
         Dim SubnetMask As String = TextBox2.Text
         Dim Gateway As String = TextBox3.Text
 
+        ' Is network enabled and connected?
+        Call NetEnabled()
+        If NetworkConnected = True Then
+        Else
+            MessageBox.Show("Please connect cable or enable network card.", "Warning",
+                       MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+            Exit Sub
+        End If
+
+        ' Are IP address field empty?
+        If IPAddress = "" Or SubnetMask = "" Or Gateway = "" Then
+            MessageBox.Show("Please fill out empty fields", "Note",
+                           MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1)
+            Exit Sub
+        End If
+
+        ' CHECK IF IP ADDRESS IS USED
+        Try
+
+            If My.Computer.Network.Ping(IPAddress, 100) Then
+
+                MessageBox.Show("The IP address " & IPAddress & " is already used." & vbNewLine & "Select different IP address and try again", "Warning",
+                      MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+
+                ' IF IP IS USED THEN ABORT & EXIT SUB 
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error pinging IP address " & IPAddress & vbNewLine & ex.Message)
+
+            ' IF IP IS USED THEN ABORT & EXIT SUB 
+            Exit Sub
+
+        End Try
+
+
+        ' IF IP IS NOT USED THEN CONTINUE 
         Try
 
             Dim classInstance As New ManagementObject( _
                 "root\CIMV2", _
-               "Win32_NetworkAdapterConfiguration.Index='" & DeviceId & "'", _
+               "Win32_NetworkAdapterConfiguration.Index='" & DeviceID & "'", _
                 Nothing)
 
             ' Obtain [in] parameters for the method
@@ -229,13 +298,16 @@ Public Class Form1
 
 
             ' List outParams
-            MessageBox.Show("The IP address has been changed", "Notification",
+            MessageBox.Show("The IP address has been changed to " & IPAddress, "Success",
      MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
         Catch err As ManagementException
 
-            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+            MessageBox.Show("An error occurred while trying to execute the IPChange method: " & err.Message)
         End Try
+
+
+
     End Sub
 
     ' GET IP ADDRESS
@@ -261,7 +333,7 @@ Public Class Form1
                 End If
             Next
         Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+            MessageBox.Show("An error occurred while querying for IPAddress data: " & err.Message)
         End Try
     End Sub
 
@@ -287,7 +359,7 @@ Public Class Form1
 
         Catch err As ManagementException
 
-            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+            MessageBox.Show("An error occurred while trying to execute the EnableDHCP method: " & err.Message)
         End Try
     End Sub
 
@@ -312,7 +384,7 @@ Public Class Form1
 
         Catch err As ManagementException
 
-            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+            MessageBox.Show("An error occurred while trying to execute the NetworkDisable method: " & err.Message)
         End Try
 
     End Sub
@@ -338,7 +410,7 @@ Public Class Form1
 
         Catch err As ManagementException
 
-            MessageBox.Show("An error occurred while trying to execute the WMI method: " & err.Message)
+            MessageBox.Show("An error occurred while trying to execute the NetworkEnable method: " & err.Message)
         End Try
     End Sub
 
@@ -358,7 +430,7 @@ Public Class Form1
 
             Next
         Catch err As ManagementException
-            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+            MessageBox.Show("An error occurred while querying for MAC Address data: " & err.Message)
         End Try
     End Sub
 
@@ -440,8 +512,11 @@ Public Class Form1
             End If
             MessageBox.Show(" File loaded successfully.", "Open File",
       MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
 
+            ' If file is loaded successfully then enable auto load file checkbox, else disable
+            CheckBox1.Enabled = True
+        Else
+            CheckBox1.Enabled = False
         End If
 
     End Sub
@@ -529,5 +604,5 @@ MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
     End Sub
 
-   
+
 End Class
