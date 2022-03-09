@@ -5,6 +5,8 @@ Imports System.Windows.Forms
 Imports System.Net.NetworkInformation
 
 Public Class Form1
+    Public Shared NetCard As String
+    Public Shared DeviceID As String
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'When application is started put default values in textbox and select saved MAC address
@@ -118,8 +120,9 @@ Public Class Form1
 
             For Each queryObj As ManagementObject In searcher.Get()
 
-                'Result = (queryObj("Caption")) ' Result is the name of network card
+                Result = (queryObj("Caption")) ' Result is the name of network card
                 'Dim CB_Split1() As String = Result.Split("]") ' Split string Result based on char "]"
+                'Dim CB_Split2() As String = CB_Split1(0).Split("00000")
                 'ComboBox3.Items.Add(CB_Split1(1)) ' Add splitted string to combobox
                 ComboBox3.Items.Add(queryObj("Caption"))
 
@@ -131,7 +134,30 @@ Public Class Form1
     End Sub
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
-        LblIndex.Text = ComboBox3.SelectedIndex ' Show selected index
+
+        NetCard = ComboBox3.Text
+
+        Dim NetCard_Split1() As String = NetCard.Split("]") ' Split string Result based on char "]"
+
+        LBLNetCard.Text = NetCard_Split1(1)
+
+        Try
+            Dim searcher As New ManagementObjectSearcher( _
+                "root\CIMV2", _
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Caption ='" & NetCard & "'") ' declare which NETWORK INDEX = from combobox index
+
+
+            For Each queryObj As ManagementObject In searcher.Get()
+
+                DeviceID = (queryObj("Index"))
+
+            Next
+        Catch err As ManagementException
+            MessageBox.Show("An error occurred while querying for WMI data: " & err.Message)
+        End Try
+
+        LBLDeviceID.Text = DeviceID
+
     End Sub
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs)
@@ -170,7 +196,7 @@ Public Class Form1
 
             Dim classInstance As New ManagementObject( _
                 "root\CIMV2", _
-               "Win32_NetworkAdapterConfiguration.Index='" & ComboBox3.SelectedIndex & "'", _
+               "Win32_NetworkAdapterConfiguration.Index='" & DeviceId & "'", _
                 Nothing)
 
             ' Obtain [in] parameters for the method
@@ -213,7 +239,7 @@ Public Class Form1
         Try
             Dim searcher As New ManagementObjectSearcher( _
                 "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & ComboBox3.SelectedIndex) ' declare which NETWORK INDEX = from combobox index
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & DeviceID) ' declare which NETWORK INDEX = from combobox index
 
 
             For Each queryObj As ManagementObject In searcher.Get()
@@ -241,7 +267,7 @@ Public Class Form1
 
             Dim classInstance As New ManagementObject( _
                 "root\CIMV2", _
-                "Win32_NetworkAdapterConfiguration.Index='" & ComboBox3.SelectedIndex & "'", _
+                "Win32_NetworkAdapterConfiguration.Index='" & DeviceID & "'", _
                 Nothing)
 
             ' no method [in] parameters to define
@@ -266,7 +292,7 @@ Public Class Form1
 
             Dim classInstance As New ManagementObject( _
                 "root\CIMV2", _
-                "Win32_NetworkAdapter.DeviceID='" & ComboBox3.SelectedIndex & "'", _
+                "Win32_NetworkAdapter.DeviceID='" & DeviceID & "'", _
                 Nothing)
 
             ' no method [in] parameters to define
@@ -292,7 +318,7 @@ Public Class Form1
 
             Dim classInstance As New ManagementObject( _
                 "root\CIMV2", _
-                "Win32_NetworkAdapter.DeviceID='" & ComboBox3.SelectedIndex & "'", _
+                "Win32_NetworkAdapter.DeviceID='" & DeviceID & "'", _
                 Nothing)
 
             ' no method [in] parameters to define
@@ -318,7 +344,7 @@ Public Class Form1
         Try
             Dim searcher As New ManagementObjectSearcher( _
                 "root\CIMV2", _
-                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & ComboBox3.SelectedIndex) ' declare which NETWORK INDEX = from combobox index
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Index = " & DeviceID) ' declare which NETWORK INDEX = from combobox index
 
 
             For Each queryObj As ManagementObject In searcher.Get()
