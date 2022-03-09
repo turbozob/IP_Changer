@@ -37,3 +37,24 @@ C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGE
 C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form1.resources
 C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\WindowsApplication1.Resources.resources
 C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.GenerateResource.Cache
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\Interop.Shell32.dll
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.ResolveComReference.cache
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\IP CHANGER.exe
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\bin\Debug\IP CHANGER.exe
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\bin\Debug\IP CHANGER.pdb
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\bin\Debug\IP CHANGER.xml
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\WindowsApplication1.AboutBox1.resources
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form1.resources
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\PLC\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4\IP CHANGER\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4b\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4b\IP CHANGER\obj\x86\Debug\Interop.Shell32.dll
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4b\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.ResolveComReference.cache
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4b\IP CHANGER\obj\x86\Debug\IP CHANGER.exe
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4b\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
+C:\Users\neng512\Documents\Visual Studio 2010\Projects\IP CHANGER v2.4b\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb

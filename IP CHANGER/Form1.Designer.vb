@@ -32,12 +32,12 @@ Partial Class Form1
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LBLNetCard = New System.Windows.Forms.Label()
         Me.LBLDeviceID = New System.Windows.Forms.Label()
-        Me.BtnSetup = New System.Windows.Forms.Button()
+        Me.BtnEdit = New System.Windows.Forms.Button()
+        Me.BtnOpen = New System.Windows.Forms.Button()
         Me.BtnOpenNetworkConnections = New System.Windows.Forms.Button()
         Me.BtnGetMAC = New System.Windows.Forms.Button()
         Me.BtnNetEnable = New System.Windows.Forms.Button()
@@ -47,6 +47,8 @@ Partial Class Form1
         Me.BtnChangeIP = New System.Windows.Forms.Button()
         Me.BtnNetScan = New System.Windows.Forms.Button()
         Me.BtnABOUT = New System.Windows.Forms.Button()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -84,6 +86,7 @@ Partial Class Form1
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(137, 29)
+        Me.TextBox1.MaxLength = 15
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(163, 22)
         Me.TextBox1.TabIndex = 6
@@ -93,6 +96,7 @@ Partial Class Form1
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.TextBox2.Location = New System.Drawing.Point(137, 57)
+        Me.TextBox2.MaxLength = 15
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(163, 22)
         Me.TextBox2.TabIndex = 7
@@ -102,6 +106,7 @@ Partial Class Form1
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.TextBox3.Location = New System.Drawing.Point(137, 85)
+        Me.TextBox3.MaxLength = 15
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(163, 22)
         Me.TextBox3.TabIndex = 8
@@ -135,16 +140,6 @@ Partial Class Form1
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(298, 21)
         Me.ComboBox3.TabIndex = 41
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label4.Location = New System.Drawing.Point(5, 330)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(89, 13)
-        Me.Label4.TabIndex = 53
-        Me.Label4.Text = "IP Changer v2.4"
         '
         'Label5
         '
@@ -186,17 +181,29 @@ Partial Class Form1
         Me.LBLDeviceID.TabIndex = 58
         Me.LBLDeviceID.Text = "None"
         '
-        'BtnSetup
+        'BtnEdit
         '
-        Me.BtnSetup.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnSetup.Image = Global.WindowsApplication1.My.Resources.Resources.setting
-        Me.BtnSetup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnSetup.Location = New System.Drawing.Point(246, 322)
-        Me.BtnSetup.Name = "BtnSetup"
-        Me.BtnSetup.Size = New System.Drawing.Size(25, 25)
-        Me.BtnSetup.TabIndex = 60
-        Me.BtnSetup.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnSetup.UseVisualStyleBackColor = True
+        Me.BtnEdit.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnEdit.Image = Global.WindowsApplication1.My.Resources.Resources.Edit_File
+        Me.BtnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnEdit.Location = New System.Drawing.Point(28, 322)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(25, 25)
+        Me.BtnEdit.TabIndex = 63
+        Me.BtnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnEdit.UseVisualStyleBackColor = True
+        '
+        'BtnOpen
+        '
+        Me.BtnOpen.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.BtnOpen.Image = Global.WindowsApplication1.My.Resources.Resources.Open_File
+        Me.BtnOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnOpen.Location = New System.Drawing.Point(4, 322)
+        Me.BtnOpen.Name = "BtnOpen"
+        Me.BtnOpen.Size = New System.Drawing.Size(25, 25)
+        Me.BtnOpen.TabIndex = 60
+        Me.BtnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnOpen.UseVisualStyleBackColor = True
         '
         'BtnOpenNetworkConnections
         '
@@ -307,21 +314,47 @@ Partial Class Form1
         Me.BtnABOUT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnABOUT.UseVisualStyleBackColor = True
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadNic
+        Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadNic", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox2.Location = New System.Drawing.Point(83, 334)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(150, 17)
+        Me.CheckBox2.TabIndex = 65
+        Me.CheckBox2.Text = "Auto Save Last Used NIC"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = Global.WindowsApplication1.My.MySettings.Default.AutoLoadConfigFile
+        Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApplication1.My.MySettings.Default, "AutoLoadConfigFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox1.Location = New System.Drawing.Point(83, 319)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(138, 17)
+        Me.CheckBox1.TabIndex = 64
+        Me.CheckBox1.Text = "Auto Load Config File"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(304, 348)
-        Me.Controls.Add(Me.BtnSetup)
+        Me.ClientSize = New System.Drawing.Size(304, 353)
+        Me.Controls.Add(Me.BtnNetDisable)
+        Me.Controls.Add(Me.BtnGetMAC)
+        Me.Controls.Add(Me.CheckBox2)
+        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.BtnEdit)
+        Me.Controls.Add(Me.BtnOpen)
         Me.Controls.Add(Me.BtnOpenNetworkConnections)
         Me.Controls.Add(Me.LBLDeviceID)
         Me.Controls.Add(Me.LBLNetCard)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.BtnGetMAC)
         Me.Controls.Add(Me.BtnNetEnable)
-        Me.Controls.Add(Me.BtnNetDisable)
         Me.Controls.Add(Me.BtnDHCP)
         Me.Controls.Add(Me.BtnGetIP)
         Me.Controls.Add(Me.BtnChangeIP)
@@ -364,12 +397,14 @@ Partial Class Form1
     Friend WithEvents BtnNetDisable As System.Windows.Forms.Button
     Friend WithEvents BtnNetEnable As System.Windows.Forms.Button
     Friend WithEvents BtnGetMAC As System.Windows.Forms.Button
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents LBLNetCard As System.Windows.Forms.Label
     Friend WithEvents LBLDeviceID As System.Windows.Forms.Label
     Friend WithEvents BtnOpenNetworkConnections As System.Windows.Forms.Button
-    Friend WithEvents BtnSetup As System.Windows.Forms.Button
+    Friend WithEvents BtnOpen As System.Windows.Forms.Button
+    Friend WithEvents BtnEdit As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
 
 End Class

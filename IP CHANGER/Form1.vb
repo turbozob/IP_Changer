@@ -3,100 +3,100 @@ Imports System.Management
 Imports System.Net
 Imports System.Windows.Forms
 Imports System.Net.NetworkInformation
+Imports System.IO
+Imports System.Threading
+Imports System.Threading.Thread
+Imports System.EventArgs
 
 Public Class Form1
     Public Shared NetCard As String
     Public Shared DeviceID As String
+    Public Shared FilePath As String
+    Public Shared TimeFull As DateTime = DateTime.Now
+    Public Shared NumberOfLinesConfig As Integer
+    Public Shared SetupNameFull(100) As String
+    Public Shared IPAddress(100) As String
+    Public Shared Subnet(100) As String
+    Public Shared Gateway(100) As String
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'When application is started put default values in textbox and select saved MAC address
-        TextBox1.Text = "192.168.1.123"
-        TextBox2.Text = "255.255.255.0"
-        TextBox3.Text = "192.168.1.1"
-        BtnNetScan.PerformClick()
-    End Sub
+        BtnNetScan.PerformClick() ' FIRST PERFORM NETWORK SCAN
 
+        If CheckBox2.Checked Then
+            FunctionAutoLoadLastNicUsed(1)
+        End If
 
-    Private Sub ComboBox1_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
-        'Select values for desired machine from dropdown list
+        If CheckBox1.Checked Then
 
-        If ComboBox1.Text = "SMM TRANSPORTI" Then
+            If My.Computer.FileSystem.FileExists(My.Settings.ConfigFilePath) Then
+                FunctionAutoLoadConfigFile(1)
+            Else
+                MessageBox.Show("Config File Not Found. Auto Load File is Disabled.", "Open Config File At Startup",
+                  MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+                CheckBox1.Checked = False
+            End If
+
+        Else
             TextBox1.Text = "192.168.1.123"
             TextBox2.Text = "255.255.255.0"
             TextBox3.Text = "192.168.1.1"
-        ElseIf ComboBox1.Text = "BALANCE" Then
-            TextBox1.Text = "192.168.0.10"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.0.1"
-        ElseIf ComboBox1.Text = "ASTEC" Then
-            TextBox1.Text = "192.168.0.10"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.0.1"
-        ElseIf ComboBox1.Text = "TOVORNI TRAK 1 IN 2" Then
-            TextBox1.Text = "10.1.10.101"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "10.1.10.1"
-        ElseIf ComboBox1.Text = "POLTOV. OBREZOVALNI STROJ" Then
-            TextBox1.Text = "192.168.0.200"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.0.1"
-        ElseIf ComboBox1.Text = "KOKUSAI 1" Then
-            TextBox1.Text = "10.1.10.220"
-            TextBox2.Text = "255.0.0.0"
-            TextBox3.Text = "10.1.10.1"
-        ElseIf ComboBox1.Text = "KOKUSAI 2" Then
-            TextBox1.Text = "172.27.156.100"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "172.27.156.1"
-        ElseIf ComboBox1.Text = "YXLON 1" Then
-            TextBox1.Text = "192.168.6.200"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.6.1"
-        ElseIf ComboBox1.Text = "YXLON 2" Then
-            TextBox1.Text = "10.1.10.250"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "10.1.10.1"
-        ElseIf ComboBox1.Text = "VEZNI TRANSPORTER" Then
-            TextBox1.Text = "192.168.223.140"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.223.1"
-        ElseIf ComboBox1.Text = "AVS 1 IN 2" Then
-            TextBox1.Text = "192.168.1.10"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.1.1"
-        ElseIf ComboBox1.Text = "4JET LASER ENGRAVER" Then
-            TextBox1.Text = "192.168.1.101"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "192.168.1.1"
-        ElseIf ComboBox1.Text = "PH BRUSILNI STROJ" Then
-            TextBox1.Text = "10.10.0.250"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "10.10.0.1"
-        ElseIf ComboBox1.Text = "MATTEUZZI" Then
-            TextBox1.Text = "10.0.0.250"
-            TextBox2.Text = "255.255.255.0"
-            TextBox3.Text = "10.0.0.1"
         End If
+        
+
+    End Sub
+    ' Function Read Text File Line by Line
+    Public Function ReadALine(ByVal File_Path As String, ByVal TotalLine As Integer, ByVal Line2Read As Integer) As String
+
+        Dim Buffer As Array
+        Dim Line As String
+        If TotalLine <= Line2Read Then
+            Return "No Such Line"
+        End If
+        Buffer = File.ReadAllLines(File_Path)
+        Line = Buffer(Line2Read)
+        Return Line
+
+    End Function
+    Public Function GetNumberOfLines(ByVal file_path As String) As Integer
+ 
+        Dim sr As New StreamReader(file_path)
+        Dim NumberOfLines As Integer
+        Do While sr.Peek >= 0
+            sr.ReadLine()
+            NumberOfLines += 1
+        Loop
+        sr.Close()
+        sr.Dispose()
+        NumberOfLinesConfig = NumberOfLines
+        Return NumberOfLines
+
+    End Function
+
+    Private Sub ComboBox1_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
+        Dim SelectSetupNo As Integer
+        SelectSetupNo = ComboBox1.SelectedIndex + 1
+
+        TextBox1.Text = IPAddress(SelectSetupNo)
+        TextBox2.Text = Subnet(SelectSetupNo)
+        TextBox3.Text = Gateway(SelectSetupNo)
     End Sub
 
 
     'TEXTBOX SETUP: ENTER NUMBERS ONLY
     Private Sub TextBox1_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
-        If Not Char.IsDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-        End If
+        'If Not Char.IsDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
+        'e.Handled = True
+        'End If
+        e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Or Char.IsControl(e.KeyChar))
     End Sub
 
     Private Sub TextBox2_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox2.KeyPress
-        If Not Char.IsDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-        End If
+        e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Or Char.IsControl(e.KeyChar))
     End Sub
 
     Private Sub TextBox3_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox3.KeyPress
-        If Not Char.IsDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-        End If
+        e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Or Char.IsControl(e.KeyChar))
     End Sub
 
     
@@ -133,7 +133,13 @@ Public Class Form1
 
     End Sub
 
+    Private Sub ComboBox3_MouseClick(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles ComboBox3.MouseClick
+        CheckBox2.Checked = False
+    End Sub
+
     Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
+
+
 
         NetCard = ComboBox3.Text
 
@@ -362,4 +368,169 @@ Public Class Form1
     Private Sub BtnOpenNetworkConnections_Click(sender As System.Object, e As System.EventArgs) Handles BtnOpenNetworkConnections.Click
         Shell("C:\Windows\System32\control.exe" & " ncpa.cpl", 1)
     End Sub
+
+    Private Sub BtnOpen_Click(sender As System.Object, e As System.EventArgs) Handles BtnOpen.Click
+
+        ComboBox1.Items.Clear()
+
+        ' Open dialog browse
+        Dim fd As OpenFileDialog = New OpenFileDialog()
+
+        fd.Title = "Open File"
+        fd.InitialDirectory = Application.StartupPath
+        'fd.Filter = "All files (*.*)|*.*|All files (*.*)|*.*"
+        fd.Filter = "Config Files (*.ini)|*.ini" ' Search only for .ini files
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+
+        If fd.ShowDialog() = DialogResult.OK Then
+            FilePath = fd.FileName
+            CheckBox1.Checked = False
+        
+        ' execute command
+        Dim filename As String = FilePath
+        Dim ValidFile As String
+        Dim ReadConfigLine As String
+        Dim SetupName As String
+        Dim IPLine As String
+        Dim SubnetLine As String
+        Dim GatewayLine As String
+        Dim Count As Integer = 4
+        Dim Number As Integer = 0
+
+        'Load File and check 1st line to validate MDRIVE file
+
+        ValidFile = (ReadALine(filename, GetNumberOfLines(filename), 1))
+        If ValidFile = "Name=IPChangerConfig" Then
+            Do While Count <= NumberOfLinesConfig
+                ReadConfigLine = (ReadALine(filename, GetNumberOfLines(filename), Count))
+
+                If ReadConfigLine.Contains("[") Then
+                    Dim SetupNameArr1() As String = ReadConfigLine.Split("[")
+                    Dim SetupNameArr2() = SetupNameArr1(1).Split("]")
+                    SetupName = SetupNameArr2(0)
+                    ComboBox1.Items.Add(SetupName)
+                    Number += 1
+                    'SetupNameFull(Number) = SetupName
+                End If
+
+                If ReadConfigLine.Contains("IP") Then
+                    Dim IPLineArr1() As String = ReadConfigLine.Split("=")
+                    IPLine = IPLineArr1(1)
+
+                    IPAddress(Number) = IPLine
+                End If
+
+                If ReadConfigLine.Contains("SUBNET") Then
+                    Dim SubnetLineArr1() As String = ReadConfigLine.Split("=")
+                    SubnetLine = SubnetLineArr1(1)
+
+                    Subnet(Number) = SubnetLine
+                End If
+
+                If ReadConfigLine.Contains("GATEWAY") Then
+                    Dim GatewayLineArr1() As String = ReadConfigLine.Split("=")
+                    GatewayLine = GatewayLineArr1(1)
+
+                    Gateway(Number) = GatewayLine
+                End If
+
+                Count += 1
+                Loop
+            Else
+                MessageBox.Show(" Config File is either not valid or corrupted.", "Error",
+   MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            End If
+            MessageBox.Show(" File loaded successfully.", "Open File",
+      MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+
+        End If
+
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As System.Object, e As System.EventArgs) Handles BtnEdit.Click
+        Dim EditFileApp As String = "notepad.exe"
+        System.Diagnostics.Process.Start(EditFileApp, FilePath)
+    End Sub
+
+  
+
+    Public Sub FunctionAutoLoadConfigFile(ByVal AutoLoad As String) '//FUNCTION CHANGE BUTTON STATE
+        ' execute command
+        Dim filename As String = My.Settings.ConfigFilePath
+        Dim ValidFile As String
+        Dim ReadConfigLine As String
+        Dim SetupName As String
+        Dim IPLine As String
+        Dim SubnetLine As String
+        Dim GatewayLine As String
+        Dim Count As Integer = 4
+        Dim Number As Integer = 0
+
+        'Load File and check 1st line to validate MDRIVE file
+
+        ValidFile = (ReadALine(filename, GetNumberOfLines(filename), 1))
+        If ValidFile = "Name=IPChangerConfig" Then
+            Do While Count <= NumberOfLinesConfig
+                ReadConfigLine = (ReadALine(filename, GetNumberOfLines(filename), Count))
+
+                If ReadConfigLine.Contains("[") Then
+                    Dim SetupNameArr1() As String = ReadConfigLine.Split("[")
+                    Dim SetupNameArr2() = SetupNameArr1(1).Split("]")
+                    SetupName = SetupNameArr2(0)
+                    ComboBox1.Items.Add(SetupName)
+                    Number += 1
+                    'SetupNameFull(Number) = SetupName
+                End If
+
+                If ReadConfigLine.Contains("IP") Then
+                    Dim IPLineArr1() As String = ReadConfigLine.Split("=")
+                    IPLine = IPLineArr1(1)
+
+                    IPAddress(Number) = IPLine
+                End If
+
+                If ReadConfigLine.Contains("SUBNET") Then
+                    Dim SubnetLineArr1() As String = ReadConfigLine.Split("=")
+                    SubnetLine = SubnetLineArr1(1)
+
+                    Subnet(Number) = SubnetLine
+                End If
+
+                If ReadConfigLine.Contains("GATEWAY") Then
+                    Dim GatewayLineArr1() As String = ReadConfigLine.Split("=")
+                    GatewayLine = GatewayLineArr1(1)
+
+                    Gateway(Number) = GatewayLine
+                End If
+
+                Count += 1
+            Loop
+ 
+        Else
+            MessageBox.Show(" Config File is either not valid or corrupted.", "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        End If
+
+    End Sub
+    Public Sub FunctionAutoLoadLastNicUsed(ByVal AutoLoadNIC As String) '//FUNCTION CHANGE BUTTON STATE
+        ComboBox3.SelectedItem = My.Settings.LastNICUsed
+    End Sub
+
+    Private Sub CheckBox1_Click(sender As Object, e As System.EventArgs) Handles CheckBox1.Click
+        If CheckBox1.Checked Then
+            My.Settings.ConfigFilePath = FilePath
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub CheckBox2_Click(sender As Object, e As System.EventArgs) Handles CheckBox2.Click
+        If CheckBox2.Checked Then
+            My.Settings.LastNICUsed = ComboBox3.SelectedItem
+            My.Settings.Save()
+        End If
+    End Sub
+
+   
 End Class
