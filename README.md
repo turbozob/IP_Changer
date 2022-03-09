@@ -4,7 +4,7 @@ Change IP address of your network adapter.
 
 ## Description
 
-Change IP address by your costum names with IP, SUBNET and GATEWAY
+Change IP address by your custom names with IP, SUBNET and GATEWAY
 
 ## Getting Started
 
