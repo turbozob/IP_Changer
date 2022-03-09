@@ -10,8 +10,8 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("IP CHANGER")> 
-<Assembly: AssemblyDescription("Warning: This computer program is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this program, or any portion of it, may result inseverecivil and criminal penalties, and will be prosecuted to the maximum extent possible under thelaw.")>
+<Assembly: AssemblyTitle("IP CHANGER")>
+<Assembly: AssemblyDescription("This program is free software. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.")>
 <Assembly: AssemblyCompany("ID ELEKTRONIK")>
 <Assembly: AssemblyProduct("IP CHANGER")>
 <Assembly: AssemblyCopyright("Copyright © ID Elektronik 2019")>
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.4.9.0")>
-<Assembly: AssemblyFileVersion("2.4.9.0")>
+<Assembly: AssemblyVersion("2.4.9.1")>
+<Assembly: AssemblyFileVersion("2.4.9.1")>
 
 <Assembly: NeutralResourcesLanguageAttribute("en")> 

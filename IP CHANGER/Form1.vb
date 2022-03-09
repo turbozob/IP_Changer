@@ -196,7 +196,10 @@ Public Class Form1
         Catch err As ManagementException
             MessageBox.Show("An error occurred while querying for NetworkCardIndex data: " & err.Message)
         End Try
-
+        If My.Settings.AutoLoadNic Then
+            My.Settings.LastNICUsed = ComboBox3.SelectedItem
+            My.Settings.Save()
+        End If
         LBLDeviceID.Text = DeviceID
         TSSL1.Text = "Ready"
     End Sub
@@ -350,6 +353,12 @@ Public Class Form1
                     For Each arrValue As String In arrIPAddress
                         MessageBox.Show("IP Address: " & arrValue)
                         'Console.WriteLine("IPAddress: {0}", arrValue)
+                        If My.Settings.CheckForIPv6 Then
+                            '// continue
+                        Else
+                            '// 1st array should be IPv4 when displayed exit the for loop
+                            Exit For
+                        End If
                     Next
                 End If
             Next

@@ -125,6 +125,18 @@ Namespace My
                 Me("CheckForEnabledNIC") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property CheckForIPv6() As Boolean
+            Get
+                Return CType(Me("CheckForIPv6"),Boolean)
+            End Get
+            Set
+                Me("CheckForIPv6") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

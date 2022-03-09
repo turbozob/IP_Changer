@@ -83,7 +83,7 @@ Partial Class AboutBox1
         Me.TB_Description.Name = "TB_Description"
         Me.TB_Description.ReadOnly = True
         Me.TB_Description.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TB_Description.Size = New System.Drawing.Size(313, 210)
+        Me.TB_Description.Size = New System.Drawing.Size(302, 210)
         Me.TB_Description.TabIndex = 32
         Me.TB_Description.TabStop = False
         Me.TB_Description.Text = resources.GetString("TB_Description.Text")
@@ -101,7 +101,7 @@ Partial Class AboutBox1
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Button1.Location = New System.Drawing.Point(111, 346)
+        Me.Button1.Location = New System.Drawing.Point(114, 346)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 37
