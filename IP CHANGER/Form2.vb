@@ -9,10 +9,13 @@ Imports System.Threading.Thread
 Imports System.EventArgs
 Imports System.ComponentModel
 Public Class Form2
+
+    ' NOTE: All settings are "ApplicationSetting" property binded, so they are changed, updated automaticaly
     Public Shared logger As log4net.ILog
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logger = log4net.LogManager.GetLogger("IP_CHANGER_ON_LF")
         logger.Info("Form loaded.")
+        logger.Debug(My.Settings.ConfigFilePath)
     End Sub
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles BtnOK.Click
         Me.Close()

@@ -1,13 +1,17 @@
-﻿==================
+﻿﻿==================
 === CHANGE LOG ===
+==  IP CHANGER  ==
 ==================
 
-## [2.5.0.1] -  2022- 03- 09
+## [2.5.1.0] -  2022- 03- 15
 -> FIXED! application is now started by program.cs object "in settings" and new class, this will catch all exceptions at startup, like log4net dll missing etc... DONE!
 -> CHANGED Check to prevent running twice System.Threading.Mutex
 -> NEW all other exceptions that are not in try-catch, will be shown with error message and prevent app from crashing
 -> NEW External editor location, notepad.exe default, in settings menu you can now select .exe of editor "example: notepad++.exe"
 -> CHANGED log files folder from "Logfiles" to "Logs" in settings.lognet xml
+-> CHANGED adapter selection names from caption to name, caption is still used for WMI commands
+-> FIXED removed gateway string empty to change IP
+-> CHANGED status info for controls
 
 ## [2.5.0.0] -  2019- 07- 03
 • ADDED
@@ -25,7 +29,6 @@ Changed project manifest file: Solution Explorer -> -> > My Project -> -> > View
 ->  Checkbox3 "Check used IP" med menjavo IP naslova
 ->  Checkbox4 "Check NIC enabled" med menjavo IP naslova
 ->  CHANGED  checkbox.checked used My.Settings.xxx for state of checkbox
-
 
 ## [2.4.8.0]
 ->  FIXED IP protection not working on network disabled
@@ -52,9 +55,6 @@ Changed project manifest file: Solution Explorer -> -> > My Project -> -> > View
 
 ## [2.4.2.0]
 ->  FIXED Open File location is C:\ by default or last used location 
-
-
-
 
 
 

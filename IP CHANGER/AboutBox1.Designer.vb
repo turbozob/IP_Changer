@@ -23,70 +23,70 @@ Partial Class AboutBox1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AboutBox1))
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TB_Description = New System.Windows.Forms.TextBox()
+        Me.lblCompanyName = New System.Windows.Forms.Label()
+        Me.lblCopyright = New System.Windows.Forms.Label()
+        Me.lblVersion = New System.Windows.Forms.Label()
+        Me.lblProductName = New System.Windows.Forms.Label()
+        Me.txtDescription = New System.Windows.Forms.TextBox()
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblDescription = New System.Windows.Forms.Label()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label4
+        'lblCompanyName
         '
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label4.Location = New System.Drawing.Point(-1, 101)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(313, 13)
-        Me.Label4.TabIndex = 36
-        Me.Label4.Text = "Label4"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblCompanyName.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblCompanyName.Location = New System.Drawing.Point(1, 136)
+        Me.lblCompanyName.Name = "lblCompanyName"
+        Me.lblCompanyName.Size = New System.Drawing.Size(313, 13)
+        Me.lblCompanyName.TabIndex = 36
+        Me.lblCompanyName.Text = "lblCompanyName"
+        Me.lblCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label3
+        'lblCopyright
         '
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label3.Location = New System.Drawing.Point(-1, 88)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(313, 13)
-        Me.Label3.TabIndex = 35
-        Me.Label3.Text = "Label3"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblCopyright.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblCopyright.Location = New System.Drawing.Point(1, 123)
+        Me.lblCopyright.Name = "lblCopyright"
+        Me.lblCopyright.Size = New System.Drawing.Size(313, 13)
+        Me.lblCopyright.TabIndex = 35
+        Me.lblCopyright.Text = "lblCopyright"
+        Me.lblCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label2
+        'lblVersion
         '
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label2.Location = New System.Drawing.Point(-1, 75)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(313, 13)
-        Me.Label2.TabIndex = 34
-        Me.Label2.Text = "Label2"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblVersion.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblVersion.Location = New System.Drawing.Point(1, 89)
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(313, 13)
+        Me.lblVersion.TabIndex = 34
+        Me.lblVersion.Text = "lblVersion"
+        Me.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label1
+        'lblProductName
         '
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label1.Location = New System.Drawing.Point(-1, 61)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(313, 14)
-        Me.Label1.TabIndex = 33
-        Me.Label1.Text = "Label1"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblProductName.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblProductName.Location = New System.Drawing.Point(-1, 61)
+        Me.lblProductName.Name = "lblProductName"
+        Me.lblProductName.Size = New System.Drawing.Size(313, 28)
+        Me.lblProductName.TabIndex = 33
+        Me.lblProductName.Text = "lblProductName"
+        Me.lblProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'TB_Description
+        'txtDescription
         '
-        Me.TB_Description.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TB_Description.Location = New System.Drawing.Point(-1, 120)
-        Me.TB_Description.Margin = New System.Windows.Forms.Padding(6, 3, 3, 3)
-        Me.TB_Description.Multiline = True
-        Me.TB_Description.Name = "TB_Description"
-        Me.TB_Description.ReadOnly = True
-        Me.TB_Description.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TB_Description.Size = New System.Drawing.Size(302, 210)
-        Me.TB_Description.TabIndex = 32
-        Me.TB_Description.TabStop = False
-        Me.TB_Description.Text = resources.GetString("TB_Description.Text")
+        Me.txtDescription.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.txtDescription.Location = New System.Drawing.Point(-1, 150)
+        Me.txtDescription.Margin = New System.Windows.Forms.Padding(6, 3, 3, 3)
+        Me.txtDescription.Multiline = True
+        Me.txtDescription.Name = "txtDescription"
+        Me.txtDescription.ReadOnly = True
+        Me.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.txtDescription.Size = New System.Drawing.Size(302, 180)
+        Me.txtDescription.TabIndex = 32
+        Me.txtDescription.TabStop = False
+        Me.txtDescription.Text = "txtDescription"
         '
         'LogoPictureBox
         '
@@ -108,17 +108,28 @@ Partial Class AboutBox1
         Me.Button1.Text = "Close"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'lblDescription
+        '
+        Me.lblDescription.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblDescription.Location = New System.Drawing.Point(0, 110)
+        Me.lblDescription.Name = "lblDescription"
+        Me.lblDescription.Size = New System.Drawing.Size(313, 13)
+        Me.lblDescription.TabIndex = 38
+        Me.lblDescription.Text = "lblDescription"
+        Me.lblDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'AboutBox1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(304, 381)
+        Me.Controls.Add(Me.lblDescription)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TB_Description)
+        Me.Controls.Add(Me.lblCompanyName)
+        Me.Controls.Add(Me.lblCopyright)
+        Me.Controls.Add(Me.lblVersion)
+        Me.Controls.Add(Me.lblProductName)
+        Me.Controls.Add(Me.txtDescription)
         Me.Controls.Add(Me.LogoPictureBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -133,12 +144,12 @@ Partial Class AboutBox1
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TB_Description As System.Windows.Forms.TextBox
+    Friend WithEvents lblCompanyName As System.Windows.Forms.Label
+    Friend WithEvents lblCopyright As System.Windows.Forms.Label
+    Friend WithEvents lblVersion As System.Windows.Forms.Label
+    Friend WithEvents lblProductName As System.Windows.Forms.Label
+    Friend WithEvents txtDescription As System.Windows.Forms.TextBox
     Friend WithEvents LogoPictureBox As System.Windows.Forms.PictureBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-
+    Friend WithEvents lblDescription As Label
 End Class

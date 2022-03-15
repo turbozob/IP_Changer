@@ -10,10 +10,12 @@ Imports System.EventArgs
 Imports System.ComponentModel
 
 Public Class Form1
-    Public Shared NetCard As String
+    Public Shared selectedAdapter As String
     Public Shared DeviceID As String
     Public Shared FilePath As String
     Public Shared LogPath As String
+    Public Shared ExternalEditor As String
+    Public Shared DefaultEditor As String = "C:\Windows\System32\notepad.exe"
     Public Shared TimeFull As DateTime = DateTime.Now
     Public Shared NumberOfLinesConfig As Integer
     Public Shared SetupNameFull(1000) As String
@@ -21,18 +23,15 @@ Public Class Form1
     Public Shared IPAddressGet As String
     Public Shared Subnet(1000) As String
     Public Shared Gateway(1000) As String
+    Public Shared NetworkAdaptersCaption(20) As String
+    Public Shared NetworkAdaptersName(20) As String
     Public Shared NetworkConnected As Boolean
     Public Shared NetworkDisconnected As Boolean
     Public Shared logger As log4net.ILog
     Public Shared loggerNoLf As log4net.ILog
     Public Shared logger1stLine As log4net.ILog
-    Public Function checkSettings(ByVal setting As Boolean)
-        If setting Then
+    Private objMutex As System.Threading.Mutex
 
-        Else
-            'logger.Info()
-        End If
-    End Function
     Public Structure naslov
         Dim IpAddress As String
         Dim Subnet As String
@@ -48,6 +47,16 @@ Public Class Form1
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        'Check to prevent running twice
+        objMutex = New System.Threading.Mutex(False, "MyApplicationName")
+        If objMutex.WaitOne(0, False) = False Then
+            objMutex.Close()
+            objMutex = Nothing
+            MessageBox.Show("Another instance is already running!")
+            End
+        End If
+
+        'If you get to this point it's frist instance
         'init logger
         Try
             'Get the logger as named in the configuration file.
@@ -80,6 +89,11 @@ Public Class Form1
 
         ' Disable auto save last used network card
         Form2.CB_LastUsedNIC.Enabled = False
+
+        ' External Editor location
+        ExternalEditor = My.Settings.ExternalEditor
+
+
 
         ' Is auto save last used network card selected?
         If My.Settings.AutoLoadNic Then
@@ -122,7 +136,7 @@ Public Class Form1
             TB_Subnet.Text = "255.255.255.0"
             TB_Gateway.Text = "192.168.1.1"
         End If
-        TSSL1.Text = "Ready"
+        lblStatus.Text = "Ready"
         logger.Debug("Finished.")
 
 
@@ -220,53 +234,70 @@ Public Class Form1
 
     Private Sub BtnNetScan_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetScan.Click
         logger.Info("Scanning for network adapters...")
-        TSSL1.Text = "Scanning for network adapters..."
+        lblStatus.Text = "Scanning for network adapters..."
         CB_NIC.Items.Clear()
         DisableButtons()
+        Dim i As Integer = 0
 
         Dim Result As String
+        Dim adapterName As String = ""
         Try
             logger.Info("Selecting query filter Win32_NetworkAdapter ")
+            ' search for all adapters which are not Microsoft as manufacturer
             Dim searcher As New ManagementObjectSearcher(
                 "root\CIMV2",
                 "SELECT * FROM Win32_NetworkAdapter WHERE Manufacturer <> 'Microsoft'")
 
             For Each queryObj As ManagementObject In searcher.Get()
 
-                Result = (queryObj("Caption")) ' Result is the name of network card
-                'Dim CB_Split1() As String = Result.Split("]") ' Split string Result based on char "]"
-                'Dim CB_Split2() As String = CB_Split1(0).Split("00000")
-                'ComboBox3.Items.Add(CB_Split1(1)) ' Add splitted string to combobox
+                Result = (queryObj("Caption")) ' Result is the Caption of network card 
+                adapterName = (queryObj("Name")) ' Result is the Caption of network card 
                 logger.Info("Found network device: " & Result)
-                CB_NIC.Items.Add(queryObj("Caption"))
 
+                ' update v2.5.0.1 beta 2A , no need to double query, just paste result
+                ' replace 0 zeros from caption names for better overview
+                Dim ResultStrTrim As String
+                ResultStrTrim = Result.Replace("0", "")
+                ' _prev CB_NIC.Items.Add(queryObj("Caption"))
+
+                ' fill array of adapter devices
+                NetworkAdaptersCaption(i) = Result
+                NetworkAdaptersName(i) = adapterName
+
+                ' add items to combobox adapter selection
+                CB_NIC.Items.Add(adapterName)
+
+                i += 1
             Next
         Catch err As ManagementException
             logger.Error("An error occurred while querying for NetworkCardCaption data: " & err.Message)
             MessageBox.Show("An error occurred while querying for NetworkCardCaption data: " & err.Message)
         End Try
         logger.Info("Scan finished")
-        TSSL1.Text = "Ready"
+        lblStatus.Text = "Ready"
     End Sub
 
 
     Private Sub CB_Nic_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles CB_NIC.SelectedIndexChanged
         logger.Debug("Start")
-        TSSL1.Text = "Selecting network adapter..."
+        lblStatus.Text = "Selecting network adapter..."
         Call EnableButtons()
         Form2.CB_LastUsedNIC.Enabled = True
-        NetCard = CB_NIC.Text
+        '' update v2.5.0.1 beta 2A
+        ' prev selectedAdapter = CB_NIC.Text
+        '// 
+        selectedAdapter = NetworkAdaptersCaption(CB_NIC.SelectedIndex)
 
         Try                                                     ' moved try here in ver 2.5.0.0
             logger.Info("Processing DEVICE ID number...")
-            Dim NetCard_Split1() As String = NetCard.Split("]") ' Split string Result based on char "]"
+            Dim NetCard_Split1() As String = selectedAdapter.Split("]") ' Split string Result based on char "]"
             logger.Info("DEVICE ID process finished.")
-            LBLNetCard.Text = NetCard_Split1(1)
+            lblSelectedAdapter.Text = NetCard_Split1(1).Trim()  ' trim remove spaces
 
-            logger.Info("Selecting query filter Win32_NetworkAdapterConfiguration for:  " & NetCard)
+            logger.Info("Selecting query filter Win32_NetworkAdapterConfiguration for:  " & selectedAdapter)
             Dim searcher As New ManagementObjectSearcher(
                 "root\CIMV2",
-                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Caption ='" & NetCard & "'") ' declare which NETWORK INDEX = from combobox index
+                "SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Caption ='" & selectedAdapter & "'") ' declare which NETWORK INDEX = from combobox index
 
 
             For Each queryObj As ManagementObject In searcher.Get()
@@ -286,14 +317,14 @@ Public Class Form1
 
         End If
         logger.Info("Completed.")
-        LBLDeviceID.Text = DeviceID
-        TSSL1.Text = "Ready"
+        lblDeviceID.Text = DeviceID
+        lblStatus.Text = "Ready"
         logger.Debug("Finished")
     End Sub
 
     Sub NetEnabled()
         logger.Debug("Start")
-        TSSL1.Text = "Checking for network adapter enabled..."
+        lblStatus.Text = "Checking for network adapter enabled..."
         Try
 
             logger.Info("Searching Win32_NetworkAdapter WHERE Index = : " & DeviceID)
@@ -322,13 +353,13 @@ Public Class Form1
             MessageBox.Show("An error occurred while querying for NetEnabled data: " & err.Message)
             NetworkConnected = False
         End Try
-        TSSL1.Text = "Ready"
+        lblStatus.Text = "Ready"
         logger.Debug("Finished")
     End Sub
     ' CHANGE IP, SUBNET AND GATEWAY
     Private Sub BtnChangeIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnChangeIP.Click
         logger.Debug("Start")
-        TSSL1.Text = "Changing IP address ..."
+        lblStatus.Text = "Changing IP address ..."
         Dim IPAddress As String = TB_IPaddress.Text
         Dim SubnetMask As String = TB_Subnet.Text
         Dim Gateway As String = TB_Gateway.Text
@@ -340,8 +371,10 @@ Public Class Form1
             Call NetEnabled()
             If NetworkConnected = True Then
                 logger.Info("Network is connected.")
+                lblStatus.Text = "Network is connected."
             Else
                 logger.Info("Network is disconnected.")
+                lblStatus.Text = "Network is disconnected."
                 MessageBox.Show("Please connect cable or enable network card.", "Warning",
                            MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
                 logger.Info("Exiting sub...")
@@ -351,7 +384,7 @@ Public Class Form1
 
         logger.Info("Checking if IP address fields are valid...")
         ' Are IP address field empty?
-        If IPAddress = "" Or SubnetMask = "" Or Gateway = "" Then
+        If IPAddress = "" Or SubnetMask = "" Then ' Gateway removed as check
             logger.Warn("One or more fields are empty...")
             MessageBox.Show("Please fill out empty fields", "Note",
                            MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1)
@@ -435,16 +468,19 @@ Public Class Form1
                 Select Case IPAddress
                     Case IPAddressGet
                         ' List outParams
+                        lblStatus.Text = "IP change success."
                         MessageBox.Show("The IP address has been changed to " & IPAddress, "Success",
                  MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                     Case Else
                         ' List outParams
+                        lblStatus.Text = "IP could not be changed."
                         MessageBox.Show("The IP address could not be changed to " & IPAddress, "Failed",
                  MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End Select
 
             Else
                 ' List outParams
+                lblStatus.Text = "IP change success."
                 MessageBox.Show("The IP address has been changed to " & IPAddress, "Success",
          MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
@@ -454,9 +490,10 @@ Public Class Form1
         Catch err As ManagementException
 
             MessageBox.Show("An error occurred while trying to execute the IPChange method: " & err.Message)
+            lblStatus.Text = "IP change error."
         End Try
 
-        TSSL1.Text = "Ready"
+
 
     End Sub
 
@@ -465,15 +502,18 @@ Public Class Form1
     Private Sub BtnGetIP_Click(sender As System.Object, e As System.EventArgs) Handles BtnGetIP.Click
         logger.Info("Start")
         IPAddressGet = FC_getIPaddress()
-        If IPAddressGet IsNot Nothing Then
-            MessageBox.Show("IP Address: " & IPAddressGet)
+
+        ' update v2.5.0.1 beta 2A , added Or "" 
+        If IPAddressGet IsNot Nothing And IPAddressGet IsNot "" Then
+            MessageBox.Show("IP Address: " & IPAddressGet) 'returned IPAddress is valid
         End If
         logger.Info("Finished")
+
     End Sub
 
     Public Function FC_getIPaddress() As String
         logger.Info("Start")
-        TSSL1.Text = "Getting IP address..."
+        lblStatus.Text = "Getting IP address..."
 
         Try
             logger.Info("Searching NetworkAdapterConfiguration for DEVICE ID: " & DeviceID)
@@ -487,12 +527,14 @@ Public Class Form1
                 If queryObj("IPAddress") Is Nothing Then
                     'MessageBox.Show("IP Address: " & queryObj("IPAddress"))
                     logger.Info("IP Address not available for DEVICE ID: " & DeviceID)
+                    lblStatus.Text = "IP Address not available."
                     MessageBox.Show("IP Address not available. Please establish connection.")
                 Else
                     Dim arrIPAddress As String()
                     arrIPAddress = queryObj("IPAddress")
                     For Each arrValue As String In arrIPAddress
                         logger.Info("IP Address found: DEVICE ID: " & DeviceID & " IP Address: " & arrValue)
+                        lblStatus.Text = "IP Address found."
                         Return (arrValue)
                         'MessageBox.Show("IP Address: " & arrValue)
                         'Console.WriteLine("IPAddress: {0}", arrValue)
@@ -507,10 +549,13 @@ Public Class Form1
             Next
         Catch err As ManagementException
             logger.Error("An error occurred while querying for IPAddress data on DEVICE ID: " & DeviceID & " Error: " & err.Message)
+            lblStatus.Text = "Error getting IP address"
             MessageBox.Show("An error occurred while querying for IPAddress data: " & err.Message)
+            Return ("")
         End Try
-        TSSL1.Text = "Ready"
+        'lblStatus.Text = "Ready"
         logger.Info("Finished")
+        Return ("")
     End Function
 
 
@@ -518,7 +563,7 @@ Public Class Form1
 
     Private Sub BtnDHCP_Click(sender As System.Object, e As System.EventArgs) Handles BtnDHCP.Click
         logger.Info("Start")
-        TSSL1.Text = "Changing to DHCP..."
+        lblStatus.Text = "Changing to DHCP..."
         Try
             logger.Info("Select Win32_NetworkAdapterConfiguration.Index by device id: " & DeviceID)
             Dim classInstance As New ManagementObject(
@@ -534,20 +579,23 @@ Public Class Form1
                 classInstance.InvokeMethod("EnableDHCP", Nothing, Nothing)
             logger.Info("Success! Method EnableDHCP executed")
             ' List outParams
+            lblStatus.Text = "DHCP change success."
             MessageBox.Show("DHCP Enabled", "Notification",
       MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
         Catch err As ManagementException
             logger.Error("An error occurred while trying to execute the EnableDHCP method: " & err.Message)
+            lblStatus.Text = "DHCP change error."
             MessageBox.Show("An error occurred while trying to execute the EnableDHCP method: " & err.Message)
+
         End Try
-        TSSL1.Text = "Ready"
+
         logger.Info("Finished")
     End Sub
 
     Private Sub BtnNetDisable_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetDisable.Click
         logger.Info("Disabling network adapter...")
-        TSSL1.Text = "Disabling network adapter..."
+        lblStatus.Text = "Disabling network adapter..."
         Try
             logger.Info("Selecting device id: " & DeviceID)
             Dim classInstance As New ManagementObject(
@@ -571,13 +619,13 @@ Public Class Form1
             MessageBox.Show("An error occurred while trying to execute the NetworkDisable method: " & err.Message)
         End Try
         logger.Info("Finished")
-        TSSL1.Text = "Ready"
+        lblStatus.Text = "Ready"
     End Sub
 
     Private Sub BtnNetEnable_Click(sender As System.Object, e As System.EventArgs) Handles BtnNetEnable.Click
 
         logger.Info("Enabling network adapter...")
-        TSSL1.Text = "Enabling network adapter..."
+        lblStatus.Text = "Enabling network adapter..."
         Try
             logger.Info("Selecting device id: " & DeviceID)
             Dim classInstance As New ManagementObject(
@@ -601,14 +649,14 @@ Public Class Form1
             MessageBox.Show("An error occurred while trying to execute the NetworkEnable method: " & err.Message)
         End Try
         logger.Info("Finished")
-        TSSL1.Text = "Ready"
+        lblStatus.Text = "Ready"
     End Sub
 
 
 
     Private Sub BtnGetMAC_Click(sender As System.Object, e As System.EventArgs) Handles BtnGetMAC.Click
         logger.Info("Started")
-        TSSL1.Text = "Getting MAC address..."
+        lblStatus.Text = "Getting MAC address..."
         Try
             logger.Info("Searching query Win32_NetworkAdapterConfiguration Index for device id: " & DeviceID)
             Dim searcher As New ManagementObjectSearcher(
@@ -621,14 +669,16 @@ Public Class Form1
                 Dim Result As String
                 Result = (queryObj("MACAddress")) ' Result is MAC address of selected Index
                 logger.Info("Success! MAC Address: " & Result)
+                lblStatus.Text = "MAC Address found."
                 MessageBox.Show("MAC Address: " & Result)
 
             Next
         Catch err As ManagementException
             logger.Error("An error occurred while querying for MAC Address data: " & err.Message)
+            lblStatus.Text = "Mac address error."
             MessageBox.Show("An error occurred while querying for MAC Address data: " & err.Message)
         End Try
-        TSSL1.Text = "Ready"
+
         logger.Info("Finished")
     End Sub
 
@@ -648,7 +698,7 @@ Public Class Form1
 
     Private Sub BtnOpen_Click(sender As System.Object, e As System.EventArgs) Handles BtnOpen.Click
         Try
-            logger.Info("OpenFileDialog start")
+            logger.Info("OpenFileDialog started")
 
             ' Open dialog browse
             Dim fd As OpenFileDialog = New OpenFileDialog()
@@ -670,10 +720,10 @@ Public Class Form1
                 ' execute command
                 FC_LoadConfigFile(FilePath)   '// call function load config file update v2.5.0.0
 
-                If My.Settings.AutoLoadConfigFile Then
-                    logger.Info("Saving filepath to My.Settings.ConfigFilePath")
-                    My.Settings.ConfigFilePath = FilePath
-                End If
+                ' If My.Settings.AutoLoadConfigFile Then
+                logger.Info("Saving filepath to My.Settings.ConfigFilePath")
+                My.Settings.ConfigFilePath = FilePath
+                ' End If
 
                 MessageBox.Show(" File loaded successfully.", "Open File",
           MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -693,8 +743,23 @@ Public Class Form1
     End Sub
 
     Private Sub BtnEdit_Click(sender As System.Object, e As System.EventArgs) Handles BtnEdit.Click
-        Dim EditFileApp As String = "notepad.exe"
-        System.Diagnostics.Process.Start(EditFileApp, FilePath)
+
+        Try
+            ' // updated in v2.5.0.1
+            logger.Debug("ExternalEditor started")
+            ExternalEditor = My.Settings.ExternalEditor
+            FilePath = My.Settings.ConfigFilePath
+            logger.Debug("Editor: " & ExternalEditor & " File: " & FilePath)
+            System.Diagnostics.Process.Start(ExternalEditor, """" & FilePath & """")
+
+        Catch ex As Exception
+            logger.Error("ExternalEditor error: " & ex.Message)
+            MessageBox.Show("Error opening config file. Please check external editor and config location." & vbLf & vbLf & ex.Message, "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+        End Try
+        logger.Debug("ExternalEditor finished")
+
     End Sub
 
     '// Update v2.5.0.0
@@ -702,7 +767,7 @@ Public Class Form1
 
     Public Sub FC_LoadConfigFile(ByVal filename As String)
         logger.Info("Loading config file ...")
-        TSSL1.Text = "Loading config file ..."
+        lblStatus.Text = "Loading config file ..."
         ' execute command
         'Dim filename As String = My.Settings.ConfigFilePath
         Dim ValidFile As String = ""
@@ -783,7 +848,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End Try
 
 
-        TSSL1.Text = "Ready. Config file loaded : " & FileVersion
+        lblStatus.Text = "Ready. Config file loaded : " & FileVersion
         logger.Info("Finished")
     End Sub
     Public Sub FC_AutoLoadLastNicUsed() '//FUNCTION CHANGE BUTTON STATE
@@ -900,15 +965,25 @@ MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        My.Settings.Save()
+        logger.Info("Saving settings done")
         logger.Info("Application shutdown")
     End Sub
 
     Private Sub BtnLogs_Click(sender As Object, e As EventArgs) Handles BtnLogs.Click
         Dim EditFileApp As String = "notepad.exe"
         Dim rootDir As String = System.Windows.Forms.Application.StartupPath
-        LogPath = rootDir & "/LogFiles"
+        LogPath = rootDir & "/Logs"
 
         'System.Diagnostics.Process.Start(EditFileApp, LogPath)
         Process.Start(LogPath)
     End Sub
+
+
+    Public Sub errCatchTest() '// use only for testing
+        ' THIS SUB WILL CAUSE EXCEPTION
+        Dim i As Integer = 1
+        i /= 0
+    End Sub
+
 End Class

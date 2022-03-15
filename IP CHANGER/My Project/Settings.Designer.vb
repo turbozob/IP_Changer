@@ -149,6 +149,18 @@ Namespace My
                 Me("VerifyIPaddress") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("notepad.exe")>  _
+        Public Property ExternalEditor() As String
+            Get
+                Return CType(Me("ExternalEditor"),String)
+            End Get
+            Set
+                Me("ExternalEditor") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

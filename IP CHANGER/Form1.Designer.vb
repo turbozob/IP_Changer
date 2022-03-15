@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Label1 = New System.Windows.Forms.Label()
@@ -32,12 +32,12 @@ Partial Class Form1
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CB_NIC = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblAdapter = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.LBLNetCard = New System.Windows.Forms.Label()
-        Me.LBLDeviceID = New System.Windows.Forms.Label()
+        Me.lblSelectedAdapter = New System.Windows.Forms.Label()
+        Me.lblDeviceID = New System.Windows.Forms.Label()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.TSSL1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.BtnLogs = New System.Windows.Forms.Button()
         Me.BtnSettings = New System.Windows.Forms.Button()
         Me.BtnNetDisable = New System.Windows.Forms.Button()
@@ -144,15 +144,15 @@ Partial Class Form1
         Me.CB_NIC.Size = New System.Drawing.Size(298, 21)
         Me.CB_NIC.TabIndex = 41
         '
-        'Label5
+        'lblAdapter
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label5.Location = New System.Drawing.Point(1, 144)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(52, 13)
-        Me.Label5.TabIndex = 55
-        Me.Label5.Text = "NetCard:"
+        Me.lblAdapter.AutoSize = True
+        Me.lblAdapter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblAdapter.Location = New System.Drawing.Point(1, 144)
+        Me.lblAdapter.Name = "lblAdapter"
+        Me.lblAdapter.Size = New System.Drawing.Size(51, 13)
+        Me.lblAdapter.TabIndex = 55
+        Me.lblAdapter.Text = "Adapter:"
         '
         'Label7
         '
@@ -160,51 +160,51 @@ Partial Class Form1
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.Label7.Location = New System.Drawing.Point(1, 161)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 13)
+        Me.Label7.Size = New System.Drawing.Size(57, 13)
         Me.Label7.TabIndex = 56
-        Me.Label7.Text = "DeviceID:"
+        Me.Label7.Text = "Device ID:"
         '
-        'LBLNetCard
+        'lblSelectedAdapter
         '
-        Me.LBLNetCard.AutoSize = True
-        Me.LBLNetCard.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.LBLNetCard.Location = New System.Drawing.Point(55, 144)
-        Me.LBLNetCard.Name = "LBLNetCard"
-        Me.LBLNetCard.Size = New System.Drawing.Size(35, 13)
-        Me.LBLNetCard.TabIndex = 57
-        Me.LBLNetCard.Text = "None"
+        Me.lblSelectedAdapter.AutoSize = True
+        Me.lblSelectedAdapter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblSelectedAdapter.Location = New System.Drawing.Point(55, 144)
+        Me.lblSelectedAdapter.Name = "lblSelectedAdapter"
+        Me.lblSelectedAdapter.Size = New System.Drawing.Size(35, 13)
+        Me.lblSelectedAdapter.TabIndex = 57
+        Me.lblSelectedAdapter.Text = "None"
         '
-        'LBLDeviceID
+        'lblDeviceID
         '
-        Me.LBLDeviceID.AutoSize = True
-        Me.LBLDeviceID.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.LBLDeviceID.Location = New System.Drawing.Point(55, 161)
-        Me.LBLDeviceID.Name = "LBLDeviceID"
-        Me.LBLDeviceID.Size = New System.Drawing.Size(35, 13)
-        Me.LBLDeviceID.TabIndex = 58
-        Me.LBLDeviceID.Text = "None"
+        Me.lblDeviceID.AutoSize = True
+        Me.lblDeviceID.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblDeviceID.Location = New System.Drawing.Point(55, 161)
+        Me.lblDeviceID.Name = "lblDeviceID"
+        Me.lblDeviceID.Size = New System.Drawing.Size(35, 13)
+        Me.lblDeviceID.TabIndex = 58
+        Me.lblDeviceID.Text = "None"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Highlight
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSSL1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 359)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(304, 22)
         Me.StatusStrip1.TabIndex = 67
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'TSSL1
+        'lblStatus
         '
-        Me.TSSL1.ForeColor = System.Drawing.Color.White
-        Me.TSSL1.Name = "TSSL1"
-        Me.TSSL1.Size = New System.Drawing.Size(45, 17)
-        Me.TSSL1.Text = "Status1"
+        Me.lblStatus.ForeColor = System.Drawing.Color.White
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(52, 17)
+        Me.lblStatus.Text = "lblStatus"
         '
         'BtnLogs
         '
         Me.BtnLogs.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.BtnLogs.Image = Global.WindowsApplication1.My.Resources.Resources.terminal_16x16
+        Me.BtnLogs.Image = Global.WindowsApplication1.My.Resources.Resources.log
         Me.BtnLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnLogs.Location = New System.Drawing.Point(246, 329)
         Me.BtnLogs.Name = "BtnLogs"
@@ -282,7 +282,8 @@ Partial Class Form1
         Me.BtnOpenNetworkConnections.Name = "BtnOpenNetworkConnections"
         Me.BtnOpenNetworkConnections.Size = New System.Drawing.Size(146, 32)
         Me.BtnOpenNetworkConnections.TabIndex = 59
-        Me.BtnOpenNetworkConnections.Text = "Open Network"
+        Me.BtnOpenNetworkConnections.Text = "Network Connections"
+        Me.BtnOpenNetworkConnections.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnOpenNetworkConnections.UseVisualStyleBackColor = True
         '
         'BtnNetEnable
@@ -371,10 +372,10 @@ Partial Class Form1
         Me.Controls.Add(Me.BtnEdit)
         Me.Controls.Add(Me.BtnOpen)
         Me.Controls.Add(Me.BtnOpenNetworkConnections)
-        Me.Controls.Add(Me.LBLDeviceID)
-        Me.Controls.Add(Me.LBLNetCard)
+        Me.Controls.Add(Me.lblDeviceID)
+        Me.Controls.Add(Me.lblSelectedAdapter)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblAdapter)
         Me.Controls.Add(Me.BtnNetEnable)
         Me.Controls.Add(Me.BtnDHCP)
         Me.Controls.Add(Me.BtnGetIP)
@@ -420,15 +421,15 @@ Partial Class Form1
     Friend WithEvents BtnNetDisable As System.Windows.Forms.Button
     Friend WithEvents BtnNetEnable As System.Windows.Forms.Button
     Friend WithEvents BtnGetMAC As System.Windows.Forms.Button
-    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents lblAdapter As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents LBLNetCard As System.Windows.Forms.Label
-    Friend WithEvents LBLDeviceID As System.Windows.Forms.Label
+    Friend WithEvents lblSelectedAdapter As System.Windows.Forms.Label
+    Friend WithEvents lblDeviceID As System.Windows.Forms.Label
     Friend WithEvents BtnOpenNetworkConnections As System.Windows.Forms.Button
     Friend WithEvents BtnOpen As System.Windows.Forms.Button
     Friend WithEvents BtnEdit As System.Windows.Forms.Button
     Friend WithEvents BtnSettings As Button
     Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents TSSL1 As ToolStripStatusLabel
+    Friend WithEvents lblStatus As ToolStripStatusLabel
     Friend WithEvents BtnLogs As Button
 End Class

@@ -189,3 +189,75 @@ C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.0\IP CHANG
 C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.0\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
 C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.0\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb
 C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.0\IP CHANGER\obj\x86\Debug\IP CHANGER.vbprojAssemblyReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\bin\Debug\IP CHANGER.exe.log4net
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\bin\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\bin\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\bin\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.vbprojAssemblyReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\Interop.Shell32.dll
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.ResolveComReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\WindowsApplication1.AboutBox1.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form1.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form2.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.GenerateResource.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CoreCompileInputs.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CopyComplete
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_R1\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\bin\Debug\IP CHANGER.exe.log4net
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\bin\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\bin\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\bin\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\Interop.Shell32.dll
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.ResolveComReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\WindowsApplication1.AboutBox1.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form1.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form2.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.GenerateResource.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CoreCompileInputs.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CopyComplete
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2\IP CHANGER\obj\x86\Debug\IP CHANGER.vbprojAssemblyReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\bin\Debug\IP CHANGER.exe.log4net
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\bin\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\bin\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\bin\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.vbprojAssemblyReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\Interop.Shell32.dll
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.ResolveComReference.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\WindowsApplication1.AboutBox1.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form1.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form2.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.GenerateResource.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CoreCompileInputs.cache
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CopyComplete
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\Visual Studio 2017\Projects\IP CHANGER v2.5.0.1_Beta2A\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\bin\Debug\IP CHANGER.exe.log4net
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\bin\Debug\IP CHANGER.exe.config
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\bin\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\bin\Debug\IP CHANGER.pdb
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\bin\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.vbprojAssemblyReference.cache
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\Interop.Shell32.dll
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.ResolveComReference.cache
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\WindowsApplication1.AboutBox1.resources
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form1.resources
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\WindowsApplication1.Form2.resources
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.GenerateResource.cache
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CoreCompileInputs.cache
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.vbproj.CopyComplete
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.exe
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.xml
+C:\Users\Igor\Documents\GitHub\IP_Changer\IP CHANGER\obj\x86\Debug\IP CHANGER.pdb

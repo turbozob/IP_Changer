@@ -26,5 +26,8 @@
     <Setting Name="VerifyIPaddress" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ExternalEditor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">notepad.exe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
