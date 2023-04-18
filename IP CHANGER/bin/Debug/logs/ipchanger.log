@@ -1,0 +1,42 @@
+	| TimeStamp					| Thread | Level	| Method = Message	
+	| 2022-03-15 09:41:36,787	| 1 	 | INFO 	| Form1_Load	= IP Changer Version 2.5.1.0
+ 	| 2022-03-15 09:41:36,803	| 1 	 | INFO 	| Form1_Load	= Reloading My.Settings
+ 	| 2022-03-15 09:41:36,814	| 1 	 | INFO 	| Form1_Load	= My.Settings.ConfigFilePath = 
+ 	| 2022-03-15 09:41:36,815	| 1 	 | INFO 	| Form1_Load	= My.Settings.AutoLoadConfigFile = False
+ 	| 2022-03-15 09:41:36,816	| 1 	 | INFO 	| Form1_Load	= My.Settings.AutoLoadNic = True
+ 	| 2022-03-15 09:41:36,816	| 1 	 | INFO 	| Form1_Load	= My.Settings.LastNICUsed = 0
+ 	| 2022-03-15 09:41:36,817	| 1 	 | INFO 	| Form1_Load	= My.Settings.CheckForUsedIP = False
+ 	| 2022-03-15 09:41:36,817	| 1 	 | INFO 	| Form1_Load	= My.Settings.CheckForEnabledNIC = False
+ 	| 2022-03-15 09:41:36,818	| 1 	 | INFO 	| Form1_Load	= My.Settings.CheckForIPv6 = False
+ 	| 2022-03-15 09:41:36,818	| 1 	 | INFO 	| Form1_Load	= My.Settings.VerifyIPaddress = True
+ 	| 2022-03-15 09:41:36,819	| 1 	 | INFO 	| Form1_Load	= Form load Finished
+ 	| 2022-03-15 09:41:36,824	| 1 	 | INFO 	| BtnNetScan_Click	= Scanning for network adapters...
+ 	| 2022-03-15 09:41:36,855	| 1 	 | INFO 	| BtnNetScan_Click	= Selecting query filter Win32_NetworkAdapter 
+ 	| 2022-03-15 09:41:37,062	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000001] Realtek PCIe GbE Family Controller
+ 	| 2022-03-15 09:41:37,066	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000002] Intel(R) Wi-Fi 6 AX201 160MHz
+ 	| 2022-03-15 09:41:37,069	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000003] Realtek USB GbE Family Controller
+ 	| 2022-03-15 09:41:37,073	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000005] Bluetooth Device (Personal Area Network)
+ 	| 2022-03-15 09:41:37,076	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000007] Realtek PCIe GbE Family Controller
+ 	| 2022-03-15 09:41:37,081	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000016] VMware Virtual Ethernet Adapter for VMnet1
+ 	| 2022-03-15 09:41:37,084	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000017] VMware Virtual Ethernet Adapter for VMnet8
+ 	| 2022-03-15 09:41:37,088	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000018] RAS Async Adapter
+ 	| 2022-03-15 09:41:37,093	| 1 	 | INFO 	| BtnNetScan_Click	= Found network device: [00000020] Bluetooth Device (Personal Area Network)
+ 	| 2022-03-15 09:41:37,101	| 1 	 | INFO 	| BtnNetScan_Click	= Scan finished
+ 	| 2022-03-15 09:41:37,102	| 1 	 | INFO 	| FC_AutoLoadLastNicUsed	= Selecting last used NIC for combobox = 0
+ 	| 2022-03-15 09:41:37,102	| 1 	 | INFO 	| FC_AutoLoadLastNicUsed	= Success
+ 	| 2022-03-15 09:41:37,103	| 1 	 | INFO 	| Form1_Load	= Auto loading config file
+ 	| 2022-03-15 09:41:37,103	| 1 	 | INFO 	| Form1_Load	= Setting default addresses...
+ 	| 2022-03-15 09:41:37,104	| 1 	 | INFO 	| TB_IPaddress_TextChanged	= Start
+ 	| 2022-03-15 09:41:37,105	| 1 	 | DEBUG	| FC_TB_Entry_Valid	= Checking data valid entry: 192.168.1.123
+ 	| 2022-03-15 09:41:37,106	| 1 	 | INFO 	| TB_IPaddress_TextChanged	= Finished
+ 	| 2022-03-15 09:41:37,108	| 1 	 | INFO 	| TB_Subnet_TextChanged	= Start
+ 	| 2022-03-15 09:41:37,109	| 1 	 | DEBUG	| FC_TB_Entry_Valid	= Checking data valid entry: 255.255.255.0
+ 	| 2022-03-15 09:41:37,110	| 1 	 | INFO 	| TB_Subnet_TextChanged	= Finished
+ 	| 2022-03-15 09:41:37,111	| 1 	 | INFO 	| TB_Gateway_TextChanged	= Start
+ 	| 2022-03-15 09:41:37,111	| 1 	 | DEBUG	| FC_TB_Entry_Valid	= Checking data valid entry: 192.168.1.1
+ 	| 2022-03-15 09:41:37,112	| 1 	 | INFO 	| TB_Gateway_TextChanged	= Finished
+ 	| 2022-03-15 09:41:37,113	| 1 	 | DEBUG	| Form1_Load	= Finished.
+ 	| 2022-03-15 09:41:38,135	| 1 	 | INFO 	| Form1_Closing	= Saving settings done
+ 	| 2022-03-15 09:41:38,135	| 1 	 | INFO 	| Form1_Closing	= Application shutdown
+ 	| 2022-03-15 09:41:38,136	| 1 	 | INFO 	| Form1_Closed	= Form closed.
+ 	

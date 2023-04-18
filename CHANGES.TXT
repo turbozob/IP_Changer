@@ -1,0 +1,69 @@
+﻿﻿==================
+=== CHANGE LOG ===
+==  IP CHANGER  ==
+==================
+
+## [2.5.1.0] -  2022- 03- 15
+-> FIXED! application is now started by program.cs object "in settings" and new class, this will catch all exceptions at startup, like log4net dll missing etc... DONE!
+-> CHANGED Check to prevent running twice System.Threading.Mutex
+-> NEW all other exceptions that are not in try-catch, will be shown with error message and prevent app from crashing
+-> NEW External editor location, notepad.exe default, in settings menu you can now select .exe of editor "example: notepad++.exe"
+-> CHANGED log files folder from "Logfiles" to "Logs" in settings.lognet xml
+-> CHANGED adapter selection names from caption to name, caption is still used for WMI commands
+-> FIXED removed gateway string empty to change IP
+-> CHANGED status info for controls
+
+## [2.5.0.0] -  2019- 07- 03
+• ADDED
+-> FIXED! open config clears the setup list, make list clear if new config file is selected before it is being loaded or pressed OK
+-> FIXED! when IP changed, get IP and compare if successful, now it is only looking for command completed
+-> NEW improve: add log4net
+-> ADDED added try catch on reading config file if invalid entry example char / is used instead of =
+
+
+## [2.4.9.0]
+->  FIXED  In Win10 IP address cannot be changed until app is ran as admin
+Changed project manifest file: Solution Explorer -> -> > My Project -> -> > View Windows Settings   <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+->  FIXED  IP cannot be changed on "ping" error Added msgbox yes no if you want to continue with the IP change
+->  NEW : Settings window,checkbox3 in 4, main form StatusBar
+->  Checkbox3 "Check used IP" med menjavo IP naslova
+->  Checkbox4 "Check NIC enabled" med menjavo IP naslova
+->  CHANGED  checkbox.checked used My.Settings.xxx for state of checkbox
+
+## [2.4.8.0]
+->  FIXED IP protection not working on network disabled
+->  ADDED condition to execute network functions if network enabled cable plugged in
+->  NEW controls disabled if network adapter not selected
+
+## [2.4.7.0]
+->  NEW protection check if IP address already used in network "ping" check
+
+## [2.4.6.0]
+->  FIXED on startup edit config opens empty file. Added copy path from settings on form loading
+->  CHANGED About image replaced
+
+
+## [2.4.5.0]
+-> CHANGED If config.ini is selected in dialog, checkbox1 (Auto Load Config File) turn ON
+
+## [2.4.4.0]
+-> CHANGED If network adapter combo is clicked, do not turn off checkbox (save Last used NIC) 
+
+## [2.4.3.0]
+
+-> CHANGED Make single instance application
+
+## [2.4.2.0]
+->  FIXED Open File location is C:\ by default or last used location 
+
+
+
+
+
+
+
+
+
+
+
+
