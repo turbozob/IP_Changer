@@ -2,28 +2,28 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="ConfigFilePath" Type="System.String" Scope="User">
+    <Setting Name="ProfilesFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="AutoLoadConfigFile" Type="System.Boolean" Scope="User">
+    <Setting Name="AutoLoadProfilesFile" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="AutoLoadNic" Type="System.Boolean" Scope="User">
+    <Setting Name="AutoLoadLastNetworkAdapter" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="LastNICUsed" Type="System.String" Scope="User">
+    <Setting Name="LastNetworkAdapterUsed" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="CheckForUsedIP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="CheckForEnabledNIC" Type="System.Boolean" Scope="User">
+    <Setting Name="CheckForNetworkAdapterEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CheckForIPv6" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="VerifyIPaddress" Type="System.Boolean" Scope="User">
+    <Setting Name="VerifyIpAddress" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ExternalEditor" Type="System.String" Scope="User">

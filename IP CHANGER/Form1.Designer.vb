@@ -138,9 +138,9 @@ Partial Class Form1
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.Label6.Location = New System.Drawing.Point(1, 116)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(87, 19)
+        Me.Label6.Size = New System.Drawing.Size(90, 19)
         Me.Label6.TabIndex = 31
-        Me.Label6.Text = "Setup Name:"
+        Me.Label6.Text = "Profile Name:"
         '
         'CB_NIC
         '

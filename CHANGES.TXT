@@ -3,6 +3,14 @@
 ==  IP CHANGER  ==
 ==================
 
+## [2.5.3.1] -  2023- 04- 27
+-> FIXED : Bug when IP would not change if "check fo IP already used was checked and ping not successful - changing between different subnets"
+
+## [2.5.3.0] -  2023- 04- 20
+-> CHANGED : Renamed config to profile as profile names
+-> CHANGED : Config screen setup names for better understanding
+
+
 ## [2.5.2.0] -  2023- 04- 18
 -> NEW : indicator that network is connected
 -> CHANGED : Form sizes to 480x480, dock status bar, anchor left right textboxes

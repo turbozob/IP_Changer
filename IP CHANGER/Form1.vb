@@ -17,8 +17,8 @@ Public Class Form1
     Public Shared ExternalEditor As String
     Public Shared DefaultEditor As String = "C:\Windows\System32\notepad.exe"
     Public Shared TimeFull As DateTime = DateTime.Now
-    Public Shared NumberOfLinesConfig As Integer
-    Public Shared SetupNameFull(1000) As String
+    Public Shared NumberOfLinesProfile As Integer
+    Public Shared ProfileNameFull(1000) As String
     Public Shared IPAddress(1000) As String
     Public Shared IPAddressGet As String
     Public Shared Subnet(1000) As String
@@ -67,14 +67,14 @@ Public Class Form1
             logger1stLine.Info("")
             logger.Info(My.Application.Info.ProductName & " " & String.Format("Version {0}", My.Application.Info.Version.ToString))
             logger.Info("Reloading My.Settings")
-            logger.Info("My.Settings.ConfigFilePath = " & My.Settings.ConfigFilePath)
-            logger.Info("My.Settings.AutoLoadConfigFile = " & My.Settings.AutoLoadConfigFile)
-            logger.Info("My.Settings.AutoLoadNic = " & My.Settings.AutoLoadNic)
-            logger.Info("My.Settings.LastNICUsed = " & My.Settings.LastNICUsed)
+            logger.Info("My.Settings.ConfigFilePath = " & My.Settings.ProfilesFilePath)
+            logger.Info("My.Settings.AutoLoadConfigFile = " & My.Settings.AutoLoadProfilesFile)
+            logger.Info("My.Settings.AutoLoadNic = " & My.Settings.AutoLoadLastNetworkAdapter)
+            logger.Info("My.Settings.LastNICUsed = " & My.Settings.LastNetworkAdapterUsed)
             logger.Info("My.Settings.CheckForUsedIP = " & My.Settings.CheckForUsedIP)
-            logger.Info("My.Settings.CheckForEnabledNIC = " & My.Settings.CheckForEnabledNIC)
+            logger.Info("My.Settings.CheckForEnabledNIC = " & My.Settings.CheckForNetworkAdapterEnabled)
             logger.Info("My.Settings.CheckForIPv6 = " & My.Settings.CheckForIPv6)
-            logger.Info("My.Settings.VerifyIPaddress = " & My.Settings.VerifyIPaddress)
+            logger.Info("My.Settings.VerifyIPaddress = " & My.Settings.VerifyIpAddress)
 
 
         Catch ex As Exception
@@ -96,7 +96,7 @@ Public Class Form1
 
 
         ' Is auto save last used network card selected?
-        If My.Settings.AutoLoadNic Then
+        If My.Settings.AutoLoadLastNetworkAdapter Then
             FC_AutoLoadLastNicUsed()
         End If
 
@@ -104,28 +104,28 @@ Public Class Form1
         Form2.CB_AutoLoadCfg.Enabled = False
 
         ' Is autoloadfile selected?
-        logger.Info("Auto loading config file")
-        If My.Settings.AutoLoadConfigFile Then
-            logger.Info("Checking if config file exists at path: " & My.Settings.ConfigFilePath)
-            If My.Computer.FileSystem.FileExists(My.Settings.ConfigFilePath) Then
-                logger.Info("Config file exists")
-                FilePath = My.Settings.ConfigFilePath
-                logger.Info("Setting config file path as: " & FilePath)
+        logger.Info("Auto loading profile file")
+        If My.Settings.AutoLoadProfilesFile Then
+            logger.Info("Checking if profile file exists at path: " & My.Settings.ProfilesFilePath)
+            If My.Computer.FileSystem.FileExists(My.Settings.ProfilesFilePath) Then
+                logger.Info("profile file exists")
+                FilePath = My.Settings.ProfilesFilePath
+                logger.Info("Setting profile file path as: " & FilePath)
 
-                FC_LoadConfigFile(FilePath)             '// call function load config file update v2.5.0.0
+                LoadProfileFile(FilePath)             '// call function load profile file update v2.5.0.0
 
-                ' Enable autoloadfile checkbox once config file exists
+                ' Enable autoloadfile checkbox once profile file exists
                 Form2.CB_AutoLoadCfg.Enabled = True
                 logger.Info("CB_AutoLoadCfg enabled: " & Form2.CB_AutoLoadCfg.Enabled)
 
             Else
-                logger.Warn("Config File Not Found. Auto Load File Is Disabled. Config file location: " & My.Settings.ConfigFilePath)
-                MessageBox.Show("Config File Not Found. Auto Load File Is Disabled.", "Open Config File At Startup",
+                logger.Warn("profile file Not Found. Auto Load File Is Disabled. profile file location: " & My.Settings.ProfilesFilePath)
+                MessageBox.Show("profile file Not Found. Auto Load File Is Disabled.", "Open profile file At Startup",
                   MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
 
-                ' Disable autoloadfile checkbox if config file is not found
+                ' Disable autoloadfile checkbox if profile file is not found
                 Form2.CB_AutoLoadCfg.Checked = False
-                My.Settings.AutoLoadConfigFile = False
+                My.Settings.AutoLoadProfilesFile = False
                 Form2.CB_AutoLoadCfg.Enabled = False
             End If
 
@@ -182,7 +182,7 @@ Public Class Form1
         Loop
         sr.Close()
         sr.Dispose()
-        NumberOfLinesConfig = NumberOfLines
+        NumberOfLinesProfile = NumberOfLines
         Return NumberOfLines
 
     End Function
@@ -310,9 +310,9 @@ Public Class Form1
         Catch err As ManagementException
             MessageBox.Show("An error occurred while querying for NetworkCardIndex data: " & err.Message)
         End Try
-        If My.Settings.AutoLoadNic Then
+        If My.Settings.AutoLoadLastNetworkAdapter Then
             logger.Info("Saving AutoLoad last NIC used")
-            My.Settings.LastNICUsed = CB_NIC.SelectedItem
+            My.Settings.LastNetworkAdapterUsed = CB_NIC.SelectedItem
             ' 'My.Settings.Save() '// not used since save my settings on shutdown is active '// not used since save my settings on shutdown is active
             logger.Info("AutoLoadNic SAVED")
 
@@ -375,7 +375,7 @@ Public Class Form1
 
 
         ' Is network enabled and connected?
-        If My.Settings.CheckForEnabledNIC Then
+        If My.Settings.CheckForNetworkAdapterEnabled Then
             logger.Info("Checking if network adapter is connected...")
             Call NetEnabled()
             If NetworkConnected = True Then
@@ -432,10 +432,6 @@ Public Class Form1
                     logger.Info("User selected YES, continue changing IP")
                 End If
 
-                ' IF IP IS USED THEN ABORT & EXIT SUB 
-                logger.Info("User selected NO, exiting sub...")
-                Exit Sub    'check
-
             End Try
         End If '// end if CheckForUsedIP
 
@@ -472,7 +468,7 @@ Public Class Form1
                 classInstance.InvokeMethod("SetGateways", inParamsGate, Nothing)
 
             ' CHECK IF IP ADDRESS IS USED                                           // v2.5.0.0 feature
-            If My.Settings.VerifyIPaddress Then
+            If My.Settings.VerifyIpAddress Then
                 IPAddressGet = FC_getIPaddress()
                 Select Case IPAddress
                     Case IPAddressGet
@@ -715,30 +711,23 @@ Public Class Form1
             fd.Title = "Open File"
             fd.InitialDirectory = Application.StartupPath
             'fd.Filter = "All files (*.*)|*.*|All files (*.*)|*.*"
-            fd.Filter = "Config Files (*.ini)|*.ini" ' Search only for .ini files
+            fd.Filter = "Profile Files (*.ini)|*.ini" ' Search only for .ini files
             fd.FilterIndex = 2
             fd.RestoreDirectory = True
 
             If fd.ShowDialog() = DialogResult.OK Then
                 logger.Info("OpenFileDialog Result OK")
                 ComboBox1.Items.Clear() '// clear items list if user selects new file, pressed OK ver 2.5.0.0 fix
-                logger.Info("Setup name list cleared")
+                logger.Info("Profile name list cleared")
                 FilePath = fd.FileName
                 logger.Info("File name selected at location: " & FilePath)
 
                 ' execute command
-                FC_LoadConfigFile(FilePath)   '// call function load config file update v2.5.0.0
+                If LoadProfileFile(FilePath) Then   '// call function load profile file update v2.5.0.0
+                    ExtractProfilesFromFile(FilePath)
+                End If
 
-                ' If My.Settings.AutoLoadConfigFile Then
-                logger.Info("Saving filepath to My.Settings.ConfigFilePath")
-                My.Settings.ConfigFilePath = FilePath
-                ' End If
 
-                MessageBox.Show(" File loaded successfully.", "Open File",
-          MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                ' If file is loaded successfully then enable auto load file checkbox, else disable
-                Form2.CB_AutoLoadCfg.Enabled = True
             Else
                 logger.Info("OpenFileDialog Result CANCEL")
                 Form2.CB_AutoLoadCfg.Enabled = False
@@ -757,13 +746,13 @@ Public Class Form1
             ' // updated in v2.5.0.1
             logger.Debug("ExternalEditor started")
             ExternalEditor = My.Settings.ExternalEditor
-            FilePath = My.Settings.ConfigFilePath
+            FilePath = My.Settings.ProfilesFilePath
             logger.Debug("Editor: " & ExternalEditor & " File: " & FilePath)
             System.Diagnostics.Process.Start(ExternalEditor, """" & FilePath & """")
 
         Catch ex As Exception
             logger.Error("ExternalEditor error: " & ex.Message)
-            MessageBox.Show("Error opening config file. Please check external editor and config location." & vbLf & vbLf & ex.Message, "Error",
+            MessageBox.Show("Error opening profile file. Please check external editor and config location." & vbLf & vbLf & ex.Message, "Error",
 MessageBoxButtons.OK, MessageBoxIcon.Stop)
 
         End Try
@@ -772,17 +761,17 @@ MessageBoxButtons.OK, MessageBoxIcon.Stop)
     End Sub
 
     '// Update v2.5.0.0
-    '// Function update to pass string of Config file location
+    '// Function update to pass string of profile file location
 
-    Public Sub FC_LoadConfigFile(ByVal filename As String)
-        logger.Info("Loading config file ...")
-        lblStatus.Text = "Loading config file ..."
+    Public Function LoadProfileFile(ByVal filename As String) As Boolean
+        logger.Info("Loading profile file ...")
+        lblStatus.Text = "Loading profile file ..."
         ' execute command
         'Dim filename As String = My.Settings.ConfigFilePath
         Dim ValidFile As String = ""
         Dim FileVersion As String = ""
-        Dim ReadConfigLine As String = ""
-        Dim SetupName As String = ""
+        Dim ReadProfileLine As String = ""
+        Dim ProfileName As String = ""
         Dim IPLine As String = ""
         Dim SubnetLine As String = ""
         Dim GatewayLine As String = ""
@@ -794,75 +783,112 @@ MessageBoxButtons.OK, MessageBoxIcon.Stop)
             logger.Debug("Reading 1st line of the file...")
             logger.Debug("Validating file...")
             ValidFile = (ReadALine(filename, GetNumberOfLines(filename), 1))
-            If ValidFile = "Name=IPChangerConfig" Then
+            If ValidFile = "Name=IPChangerConfig" Or ValidFile = "Name=IPChangerProfiles" Then '// both names are left as valid for compatibility
                 logger.Info("File Valid")
-                logger.Debug("Reading 2nd line of the file...")
-                FileVersion = (ReadALine(filename, GetNumberOfLines(filename), 2))
-                logger.Debug("File Version is: " & FileVersion)
-                logger.Debug("Start extracting data from the file")
-                Do While Count <= NumberOfLinesConfig
-                    logger.Debug("Reading line " & Count & " of " & NumberOfLinesConfig)
-                    ReadConfigLine = (ReadALine(filename, GetNumberOfLines(filename), Count))
-
-                    If ReadConfigLine.Contains("[") Then
-                        Dim SetupNameArr1() As String = ReadConfigLine.Split("[")
-                        Dim SetupNameArr2() = SetupNameArr1(1).Split("]")
-                        SetupName = SetupNameArr2(0)
-                        ComboBox1.Items.Add(SetupName)
-                        Number += 1
-                        logger.Debug("Found setup name: " & SetupName & " Index: " & Number) ' mora biti tu zaradi loga pravega index-a
-                        'SetupNameFull(Number) = SetupName
-                    End If
-
-                    If ReadConfigLine.Contains("IP") Then
-                        Dim IPLineArr1() As String = ReadConfigLine.Split("=")
-                        IPLine = IPLineArr1(1)
-
-                        IPAddress(Number) = IPLine
-                        logger.Debug("Found IP string on line" & " - " & Count & " - " & "Value: " & IPLine)
-                    End If
-
-                    If ReadConfigLine.Contains("SUBNET") Then
-
-                        Dim SubnetLineArr1() As String = ReadConfigLine.Split("=")
-                        SubnetLine = SubnetLineArr1(1)
-
-                        Subnet(Number) = SubnetLine
-                        logger.Debug("Found SUBNET string on line" & " - " & Count & " - " & "Value: " & SubnetLine)
-                    End If
-
-                    If ReadConfigLine.Contains("GATEWAY") Then
-
-                        Dim GatewayLineArr1() As String = ReadConfigLine.Split("=")
-                        GatewayLine = GatewayLineArr1(1)
-
-                        Gateway(Number) = GatewayLine
-                        logger.Debug("Found GATEWAY string on line" & " - " & Count & " - " & "Value: " & GatewayLine)
-                    End If
-
-                    Count += 1
-                Loop
-
+                Return True
             Else
-                MessageBox.Show(" Config File is either not valid or corrupted.", "Error",
+                MessageBox.Show("Profile file is either not valid or corrupted.", "Error",
 MessageBoxButtons.OK, MessageBoxIcon.Stop)
             End If
 
-
-
         Catch ex As Exception
-            logger.Error("Error reading config file on line " & Count)
-            MessageBox.Show("Error reading config file " & vbLf & vbLf & "Line: " & Count & vbLf & "Setup:" & SetupName & vbLf & vbLf & "Manually open config file and check if data format is correct.", "Error",
+            logger.Error("Error reading profile file on line " & Count & " Error: " & ex.Message)
+            MessageBox.Show("Profile file is either not valid or corrupted.", "Error",
 MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return False
         End Try
 
-
-        lblStatus.Text = "Ready. Config file loaded : " & FileVersion
+        Return False
         logger.Info("Finished")
-    End Sub
+    End Function
+
+    Public Function ExtractProfilesFromFile(ByVal filename As String) As Boolean
+        logger.Info("Extracting profiles  ...")
+        lblStatus.Text = "Extracting profiles  ..."
+        ' execute command
+        'Dim filename As String = My.Settings.ConfigFilePath
+        Dim ValidFile As String = ""
+        Dim FileVersion As String = ""
+        Dim ReadProfileLine As String = ""
+        Dim ProfileName As String = ""
+        Dim IPLine As String = ""
+        Dim SubnetLine As String = ""
+        Dim GatewayLine As String = ""
+        Dim Count As Integer = 4
+        Dim Number As Integer = 0
+        Try
+
+            'Load File and check 1st line to validate MDRIVE file
+
+            logger.Debug("Reading 2nd line of the file...")
+            FileVersion = (ReadALine(filename, GetNumberOfLines(filename), 2))
+            logger.Debug("File Version is: " & FileVersion)
+            logger.Debug("Start extracting data from the file")
+            Do While Count <= NumberOfLinesProfile
+                logger.Debug("Reading line " & Count & " of " & NumberOfLinesProfile)
+                ReadProfileLine = (ReadALine(filename, GetNumberOfLines(filename), Count))
+
+                If ReadProfileLine.Contains("[") Then
+                    Dim ProfileNameArr1() As String = ReadProfileLine.Split("[")
+                    Dim ProfileNameArr2() = ProfileNameArr1(1).Split("]")
+                    ProfileName = ProfileNameArr2(0)
+                    ComboBox1.Items.Add(ProfileName)
+                    Number += 1
+                    logger.Debug("Found profile name: " & ProfileName & " Index: " & Number) ' mora biti tu zaradi loga pravega index-a
+                    'ProfileNameFull(Number) = ProfileName
+                End If
+
+                If ReadProfileLine.Contains("IP") Then
+                    Dim IPLineArr1() As String = ReadProfileLine.Split("=")
+                    IPLine = IPLineArr1(1)
+
+                    IPAddress(Number) = IPLine
+                    logger.Debug("Found IP string on line" & " - " & Count & " - " & "Value: " & IPLine)
+                End If
+
+                If ReadProfileLine.Contains("SUBNET") Then
+
+                    Dim SubnetLineArr1() As String = ReadProfileLine.Split("=")
+                    SubnetLine = SubnetLineArr1(1)
+
+                    Subnet(Number) = SubnetLine
+                    logger.Debug("Found SUBNET string on line" & " - " & Count & " - " & "Value: " & SubnetLine)
+                End If
+
+                If ReadProfileLine.Contains("GATEWAY") Then
+
+                    Dim GatewayLineArr1() As String = ReadProfileLine.Split("=")
+                    GatewayLine = GatewayLineArr1(1)
+
+                    Gateway(Number) = GatewayLine
+                    logger.Debug("Found GATEWAY string on line" & " - " & Count & " - " & "Value: " & GatewayLine)
+                End If
+
+                Count += 1
+            Loop
+            lblStatus.Text = "Ready. profile file loaded : " & FileVersion
+            logger.Info("Saving filepath to My.Settings.ProfilesFilePath")
+            My.Settings.ProfilesFilePath = FilePath
+            MessageBox.Show(" File loaded successfully.", "Open File",
+          MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' If file is loaded successfully then enable auto load file checkbox, else disable
+            Form2.CB_AutoLoadCfg.Enabled = True
+            Return True
+
+        Catch ex As Exception
+            logger.Error("Error reading profile file on line " & Count)
+            MessageBox.Show("Error reading profile file " & vbLf & vbLf & "Line: " & Count & vbLf & "Profile:" & ProfileName & vbLf & vbLf & "Manually open profile file and check if data format is correct.", "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return False
+        End Try
+
+        Return True
+        logger.Info("Finished")
+    End Function
     Public Sub FC_AutoLoadLastNicUsed() '//FUNCTION CHANGE BUTTON STATE
-        logger.Info("Selecting last used NIC for combobox = " & My.Settings.LastNICUsed)
-        CB_NIC.SelectedItem = My.Settings.LastNICUsed
+        logger.Info("Selecting last used NIC for combobox = " & My.Settings.LastNetworkAdapterUsed)
+        CB_NIC.SelectedItem = My.Settings.LastNetworkAdapterUsed
         logger.Info("Success")
     End Sub
 
@@ -995,7 +1021,4 @@ MessageBoxButtons.OK, MessageBoxIcon.Error)
         i /= 0
     End Sub
 
-    Private Sub StatusStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles StatusStrip1.ItemClicked
-
-    End Sub
 End Class

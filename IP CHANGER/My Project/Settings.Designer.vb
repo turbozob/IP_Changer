@@ -57,48 +57,48 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property ConfigFilePath() As String
+        Public Property ProfilesFilePath() As String
             Get
-                Return CType(Me("ConfigFilePath"),String)
+                Return CType(Me("ProfilesFilePath"),String)
             End Get
             Set
-                Me("ConfigFilePath") = value
+                Me("ProfilesFilePath") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property AutoLoadConfigFile() As Boolean
+        Public Property AutoLoadProfilesFile() As Boolean
             Get
-                Return CType(Me("AutoLoadConfigFile"),Boolean)
+                Return CType(Me("AutoLoadProfilesFile"),Boolean)
             End Get
             Set
-                Me("AutoLoadConfigFile") = value
+                Me("AutoLoadProfilesFile") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property AutoLoadNic() As Boolean
+        Public Property AutoLoadLastNetworkAdapter() As Boolean
             Get
-                Return CType(Me("AutoLoadNic"),Boolean)
+                Return CType(Me("AutoLoadLastNetworkAdapter"),Boolean)
             End Get
             Set
-                Me("AutoLoadNic") = value
+                Me("AutoLoadLastNetworkAdapter") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property LastNICUsed() As String
+        Public Property LastNetworkAdapterUsed() As String
             Get
-                Return CType(Me("LastNICUsed"),String)
+                Return CType(Me("LastNetworkAdapterUsed"),String)
             End Get
             Set
-                Me("LastNICUsed") = value
+                Me("LastNetworkAdapterUsed") = value
             End Set
         End Property
         
@@ -117,12 +117,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property CheckForEnabledNIC() As Boolean
+        Public Property CheckForNetworkAdapterEnabled() As Boolean
             Get
-                Return CType(Me("CheckForEnabledNIC"),Boolean)
+                Return CType(Me("CheckForNetworkAdapterEnabled"),Boolean)
             End Get
             Set
-                Me("CheckForEnabledNIC") = value
+                Me("CheckForNetworkAdapterEnabled") = value
             End Set
         End Property
         
@@ -141,12 +141,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property VerifyIPaddress() As Boolean
+        Public Property VerifyIpAddress() As Boolean
             Get
-                Return CType(Me("VerifyIPaddress"),Boolean)
+                Return CType(Me("VerifyIpAddress"),Boolean)
             End Get
             Set
-                Me("VerifyIPaddress") = value
+                Me("VerifyIpAddress") = value
             End Set
         End Property
         

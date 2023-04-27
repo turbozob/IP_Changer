@@ -15,7 +15,7 @@ Public Class Form2
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logger = log4net.LogManager.GetLogger("IP_CHANGER_ON_LF")
         logger.Info("Form loaded.")
-        logger.Debug(My.Settings.ConfigFilePath)
+        logger.Debug(My.Settings.ProfilesFilePath)
     End Sub
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles BtnOK.Click
         Me.Close()
@@ -24,14 +24,14 @@ Public Class Form2
     Private Sub CB_AutoLoadCfg_Click(sender As Object, e As EventArgs) Handles CB_AutoLoadCfg.Click
         logger.Info("State Checked: " & CB_AutoLoadCfg.Checked)
         If CB_AutoLoadCfg.Checked Then
-            My.Settings.ConfigFilePath = Form1.FilePath
+            My.Settings.ProfilesFilePath = Form1.FilePath
         End If
     End Sub
 
     Private Sub CB_LastUsedNIC_Click(sender As Object, e As EventArgs) Handles CB_LastUsedNIC.Click
         logger.Info("State Checked: " & CB_LastUsedNIC.Checked)
         If CB_LastUsedNIC.Checked Then
-            My.Settings.LastNICUsed = Form1.CB_NIC.SelectedItem
+            My.Settings.LastNetworkAdapterUsed = Form1.CB_NIC.SelectedItem
         End If
 
     End Sub
@@ -55,4 +55,5 @@ Public Class Form2
     Private Sub Form2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         logger.Info("Form closed.")
     End Sub
+
 End Class
